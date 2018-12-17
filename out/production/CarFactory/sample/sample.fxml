@@ -1,8 +1,362 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.View">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@res/bg.png" />
+         </image>
+      </ImageView>
+      <ImageView disable="true" opacity="0.75" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@res/interactive.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="rootPane" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="527.0" prefWidth="857.0">
+         <children>
+            <ImageView layoutX="47.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/on.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView layoutX="47.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/off.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="enableTaxt" layoutX="36.0" layoutY="147.0" text="on" textFill="#00000040">
+               <font>
+                  <Font name="Aldo the Apache" size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="286.0" text="off" textFill="#00000040">
+               <font>
+                  <Font name="Aldo the Apache" size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="214.0" layoutY="241.0" text="99/99">
+               <font>
+                  <Font name="Aldo the Apache" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="89.0" layoutY="185.0" text="126005">
+               <font>
+                  <Font name="Aldo the Apache" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="89.0" layoutY="495.0" text="126005">
+               <font>
+                  <Font name="Aldo the Apache" size="15.0" />
+               </font>
+            </Label>
+            <ImageView layoutX="89.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/runner.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView layoutX="123.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/runner.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView layoutX="106.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/runner.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView layoutX="408.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/runner.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView layoutX="546.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/runner.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView layoutX="308.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/off.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label layoutX="295.0" layoutY="130.0" text="off" textFill="#00000040">
+               <font>
+                  <Font name="Aldo the Apache" size="10.0" />
+               </font>
+            </Label>
+            <ImageView layoutX="36.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/on.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label layoutX="25.0" layoutY="454.0" text="on" textFill="#00000040">
+               <font>
+                  <Font name="Aldo the Apache" size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="89.0" layoutY="322.0" text="126005">
+               <font>
+                  <Font name="Aldo the Apache" size="15.0" />
+               </font>
+            </Label>
+            <ImageView layoutX="242.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/xBtn.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label layoutX="214.0" layoutY="108.0" text="99/99">
+               <font>
+                  <Font name="Aldo the Apache" size="13.0" />
+               </font>
+            </Label>
+            <ImageView layoutX="242.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/xBtn.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label layoutX="214.0" layoutY="415.0" text="99/99">
+               <font>
+                  <Font name="Aldo the Apache" size="13.0" />
+               </font>
+            </Label>
+            <ImageView layoutX="242.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/xBtn.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label layoutX="388.0" layoutY="198.0" text="126005">
+               <font>
+                  <Font name="Aldo the Apache" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="508.0" layoutY="229.0" text="99">
+               <font>
+                  <Font name="Aldo the Apache" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="597.0" layoutY="168.0" text="99/99">
+               <font>
+                  <Font name="Aldo the Apache" size="13.0" />
+               </font>
+            </Label>
+            <ImageView layoutX="625.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/xBtn.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label layoutX="528.0" layoutY="506.0" text="126005">
+               <font>
+                  <Font name="Aldo the Apache" size="15.0" />
+               </font>
+            </Label>
+            <ImageView layoutX="64.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/wait.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="45.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/wait.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="65.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/wait.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="301.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/wait.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="476.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/dealSell.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="586.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/dealSell.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="530.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/dealSell.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="405.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/dealSell.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="515.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/dealSell.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="459.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/dealSell.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="211.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/infoLine.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="211.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/infoLine.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="211.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/infoLine.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="594.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/infoLine.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="813.0" layoutY="261.0" text="99" textAlignment="CENTER" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="787.0" layoutY="425.0" text="1233" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="685.0" layoutY="439.0" text="99/99" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="787.0" layoutY="439.0" text="1233" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="685.0" layoutY="454.0" text="99/99" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="787.0" layoutY="454.0" text="1233" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="685.0" layoutY="469.0" text="99/99" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="787.0" layoutY="469.0" text="1233" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="685.0" layoutY="485.0" text="99/99" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="787.0" layoutY="485.0" text="1233" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="813.0" layoutY="280.0" text="99" textAlignment="CENTER" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="813.0" layoutY="300.0" text="99" textAlignment="CENTER" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="813.0" layoutY="320.0" text="99" textAlignment="CENTER" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="808.0" layoutY="340.0" text="YES" textAlignment="CENTER" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="685.0" layoutY="425.0" text="99/99" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="673.0" layoutY="51.0" prefHeight="18.0" prefWidth="164.0" text="15.12.18 | 12:40" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Consolas Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="670.0" layoutY="70.0" prefHeight="21.0" prefWidth="164.0" text="dealer-1, CAR-2324: 0f6d5," textAlignment="CENTER" textFill="#2e2e2e80">
+               <font>
+                  <Font name="Consolas Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label layoutX="670.0" layoutY="80.0" prefHeight="21.0" prefWidth="173.0" text="body: 8df6g, engine: 7ydy7;" textAlignment="CENTER" textFill="#2e2e2e80">
+               <font>
+                  <Font name="Consolas Bold" size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
