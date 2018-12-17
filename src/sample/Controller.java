@@ -17,8 +17,8 @@ public class Controller {
 	
 	private void clickListener(MouseEvent e) {
 		
-		if (e.getTarget() == view.on) {
-			System.out.println("click >> ON");
+		if (e.getTarget() == view.switcherOffBg) {
+			model.engineSupplierSwitcher();
 		}
 		
 	}

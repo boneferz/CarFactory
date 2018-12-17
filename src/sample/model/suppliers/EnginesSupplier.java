@@ -1,20 +1,17 @@
 package sample.model.suppliers;
 
 import sample.model.Config;
+import sample.model.ModelFacade;
+import sample.model.SupplierEvents;
 
 import static sample.model.suppliers.SupplierState.*;
 
-public class EnginesSupplier implements Supplier {
+public class EnginesSupplier {
 	
 	private SupplierState state;
 	private boolean isEnabled;
 	private int total;
 	private int speeed;
-	
-	// speed slider - g
-	// on switcher - g
-	// state animation - g
-	// total output
 	
 	// work logic
 	
@@ -23,52 +20,50 @@ public class EnginesSupplier implements Supplier {
 	}
 	
 	private void init() {
-		isEnabled = false;
-		state = OFF;
 		total = 0;
 		speeed = Config.getInstance().factorysSpeed;
+		
+		isEnabled = false;
+		state = OFF;
 	}
 	
 	void reset() {
 	
 	}
 	
-	@Override
-	public void on() {
-		System.out.println("Engine -> ON");
+	public void switcher() {
+		if (isEnabled) {
+			isEnabled = false;
+			state = OFF;
+			ModelFacade.eventDispatcher.dispatchEvent(SupplierEvents.SWITCH_OFF.getValue());
+		}
+		else {
+			isEnabled = true;
+			state = RUNNING;
+			ModelFacade.eventDispatcher.dispatchEvent(SupplierEvents.SWITCH_ON.getValue());
+		}
 	}
 	
-	@Override
-	public void off() {
-		System.out.println("Engine -> OFF");
-	}
-	
-	@Override
 	public void pause() {
 	
 	}
 	
-	@Override
 	public void resume() {
 	
 	}
 	
-	@Override
 	public void problem() {
 	
 	}
 	
-	@Override
 	public void create() {
 	
 	}
 	
-	@Override
 	public void changeSpeed() {
 	
 	}
 	
-	@Override
 	public void put() {
 	
 	}

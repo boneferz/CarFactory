@@ -38,6 +38,7 @@ public class Main extends Application {
 	    view.setModel(model);
 	    controller = new Controller(view, model);
 	    
+	    
     }
 	
 }
