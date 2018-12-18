@@ -4,7 +4,7 @@ public class Config {
 	private static Config instance = new Config();
 	
 	public final int warehouseSize = 10;
-	public final int factorysSpeed = 100;
+	public final int factorysSpeed = 500;
 	public final int salesSpeed = 100;
 	public final int problemChance = 25;
 	public final String logFile = "yes";

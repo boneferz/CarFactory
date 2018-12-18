@@ -8,6 +8,7 @@ import sample.model.CustomEvent;
 import sample.model.EventDispatcher;
 import sample.model.ModelFacade;
 import sample.model.SupplierEvents;
+import sample.model.suppliers.EnginesSupplier;
 
 public class View {
 	
@@ -113,16 +114,22 @@ public class View {
 	}
 	
 	void modelListener(CustomEvent event) {
-		String eventName = event.getEventName();
-		int index = event.getIndex();
+		// suppliers
+		int index = ((EnginesSupplier) event.getSource()).index;
+		int total = ((EnginesSupplier) event.getSource()).total;
 		
-		if (eventName.equals(SupplierEvents.SWITCH_ON.getValue())) {
-			suppliers[index].on();
-		} else if (eventName.equals(SupplierEvents.SWITCH_OFF.getValue())) {
-			suppliers[index].off();
-		} else if (eventName.equals(SupplierEvents.MADE.getValue())) {
-			suppliers[index].made(3);
-			System.out.println("--");
+		switch (event.getType()) {
+			case SWITCH_ON:
+				suppliers[index].on();
+				break;
+				
+			case SWITCH_OFF:
+				suppliers[index].off();
+				break;
+				
+			case MADE:
+				suppliers[index].made(total);
+				break;
 		}
 	}
 	

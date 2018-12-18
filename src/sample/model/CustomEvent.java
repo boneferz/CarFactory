@@ -1,23 +1,21 @@
 package sample.model;
 
-public class CustomEvent {
-	String eventName;
-	int index;
+import java.util.EventObject;
+
+public class CustomEvent extends EventObject {
+	private SupplierEvents type;
 	
-	public CustomEvent(String eventName, int index) {
-		this.eventName = eventName;
-		this.index = index;
+	public CustomEvent(Object source, SupplierEvents type) {
+		super(source);
+		this.type = type;
 	}
 	
-	public CustomEvent(String eventName) {
-		this.eventName = eventName;
+	public SupplierEvents getType() {
+		return type;
 	}
 	
-	public String getEventName() {
-		return eventName;
-	}
-	
-	public int getIndex() {
-		return index;
+	@Override
+	public String toString() {
+		return super.toString() + ", [" + type.toString() + "]";
 	}
 }

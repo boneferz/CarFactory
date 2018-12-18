@@ -1,5 +1,9 @@
 package sample.model.suppliers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.util.Duration;
 import sample.model.Config;
 import sample.model.CustomEvent;
 import sample.model.ModelFacade;
@@ -9,55 +13,61 @@ import static sample.model.suppliers.SupplierState.*;
 
 public class EnginesSupplier {
 	
-	private int index;
+	Timeline timeline;
 	
+	public int index;
 	private SupplierState state;
 	private boolean isEnabled;
-	private int total;
+	public int total;
 	private int speeed;
 	private int problemChance;
 	
 	public EnginesSupplier(int index) {
 		this.index = index;
 		
-		init();
-	}
-	
-	
-	private void init() {
 		total = 0;
 		speeed = Config.getInstance().factorysSpeed;
-		
 		isEnabled = false;
 		state = OFF;
+		
+		timeline = new Timeline();
+		timeline.setCycleCount(Timeline.INDEFINITE);
+		timeline.setOnFinished(this::workCycle);
+		timeline.getKeyFrames().add(new KeyFrame(Duration.millis(speeed), timeline.getOnFinished()));
 	}
 	
-	void reset() {
+	private void workCycle(ActionEvent actionEvent) {
+		setTotal(++total);
+	}
 	
+	public void setTotal(int total) {
+		this.total = total;
+		ModelFacade.eventDispatcher.dispatchEvent(new CustomEvent(this, SupplierEvents.MADE));
 	}
 	
 	public void switcher() {
 		if (isEnabled) {
 			isEnabled = false;
 			state = OFF;
-			
-			ModelFacade.eventDispatcher.dispatchEvent(
-					new CustomEvent(SupplierEvents.SWITCH_OFF.getValue(), index));
+			ModelFacade.eventDispatcher.dispatchEvent(new CustomEvent(this, SupplierEvents.SWITCH_OFF));
+			off();
 		} else {
 			isEnabled = true;
 			state = RUNNING;
-			
-			ModelFacade.eventDispatcher.dispatchEvent(
-					new CustomEvent(SupplierEvents.SWITCH_ON.getValue(), index));
-			
+			ModelFacade.eventDispatcher.dispatchEvent(new CustomEvent(this, SupplierEvents.SWITCH_ON));
 			run();
 		}
 	}
 	
+	private void off() {
+		timeline.stop();
+		setTotal(0);
+	}
+	
 	private void run() {
-		total++;
-		ModelFacade.eventDispatcher.dispatchEvent(
-				new CustomEvent(SupplierEvents.MADE.getValue(), index));
+		timeline.play();
+		System.out.println("EnginesSupplier.run");
+		ModelFacade.eventDispatcher.dispatchEvent(new CustomEvent(this, SupplierEvents.MADE));
 	}
 	
 	public void pause() {
