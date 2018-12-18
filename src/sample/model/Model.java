@@ -5,8 +5,14 @@ import sample.model.suppliers.EnginesSupplier;
 public class Model {
 	
 	public EnginesSupplier enginesSupplier;
+	public EnginesSupplier[] suppliers;
 	
 	public Model() {
-		enginesSupplier = new EnginesSupplier();
+		suppliers = new EnginesSupplier[4];
+		
+		for (int i = 0; i < suppliers.length; i++) {
+			enginesSupplier = new EnginesSupplier(i);
+			suppliers[i] = enginesSupplier;
+		}
 	}
 }

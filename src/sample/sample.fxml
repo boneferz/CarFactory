@@ -8,34 +8,34 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.View">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.View">
    <children>
       <ImageView pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@res/bg.png" />
+            <Image url="@_res/bg.png" />
          </image>
       </ImageView>
       <ImageView disable="true" opacity="0.75" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@res/interactive.png" />
+            <Image url="@_res/interactive.png" />
          </image>
       </ImageView>
       <Pane fx:id="rootPane" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="527.0" prefWidth="857.0">
          <children>
-            <ImageView layoutX="47.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="switch_2" layoutX="47.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/off.png" />
+                  <Image url="@_res/off.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label fx:id="switchText_1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="36.0" layoutY="147.0" text="on" textAlignment="RIGHT" textFill="#00000040">
+            <Label fx:id="switchText_1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="7.0" layoutY="146.0" prefHeight="13.0" prefWidth="39.0" text="on" textAlignment="RIGHT" textFill="#00000040">
                <font>
                   <Font name="Aldo the Apache" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="switchText_2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="34.0" layoutY="286.0" text="off" textAlignment="RIGHT" textFill="#00000040">
+            <Label fx:id="switchText_2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="2.0" layoutY="284.0" prefHeight="13.0" prefWidth="44.0" text="off" textAlignment="RIGHT" textFill="#00000040">
                <font>
                   <Font name="Aldo the Apache" size="10.0" />
                </font>
@@ -45,19 +45,19 @@
                   <Font name="Aldo the Apache" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="89.0" layoutY="185.0" text="126005">
+            <Label fx:id="total_1" layoutX="89.0" layoutY="185.0" text="126005">
                <font>
                   <Font name="Aldo the Apache" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="89.0" layoutY="495.0" text="126005">
+            <Label fx:id="total_3" layoutX="89.0" layoutY="495.0" text="126005">
                <font>
                   <Font name="Aldo the Apache" size="15.0" />
                </font>
             </Label>
             <ImageView layoutX="89.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/runner.png" />
+                  <Image url="@_res/runner.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -65,7 +65,7 @@
             </ImageView>
             <ImageView layoutX="123.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/runner.png" />
+                  <Image url="@_res/runner.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -73,7 +73,7 @@
             </ImageView>
             <ImageView layoutX="106.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/runner.png" />
+                  <Image url="@_res/runner.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -81,7 +81,7 @@
             </ImageView>
             <ImageView layoutX="408.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/runner.png" />
+                  <Image url="@_res/runner.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -89,15 +89,15 @@
             </ImageView>
             <ImageView layoutX="546.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/runner.png" />
+                  <Image url="@_res/runner.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView layoutX="308.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="switch_4" layoutX="308.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/off.png" />
+                  <Image url="@_res/off.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -108,27 +108,27 @@
                   <Font name="Aldo the Apache" size="10.0" />
                </font>
             </Label>
-            <ImageView layoutX="36.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="switch_3" layoutX="36.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/on.png" />
+                  <Image url="@_res/off.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label fx:id="switchText_3" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="25.0" layoutY="454.0" text="on" textAlignment="RIGHT" textFill="#00000040">
+            <Label fx:id="switchText_3" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="3.0" layoutY="454.0" prefHeight="4.0" prefWidth="33.0" text="off" textAlignment="RIGHT" textFill="#00000040">
                <font>
                   <Font name="Aldo the Apache" size="10.0" />
                </font>
             </Label>
-            <Label layoutX="89.0" layoutY="322.0" text="126005">
+            <Label fx:id="total_2" layoutX="89.0" layoutY="322.0" text="126005">
                <font>
                   <Font name="Aldo the Apache" size="15.0" />
                </font>
             </Label>
             <ImageView layoutX="242.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/xBtn.png" />
+                  <Image url="@_res/xBtn.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -141,7 +141,7 @@
             </Label>
             <ImageView layoutX="242.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/xBtn.png" />
+                  <Image url="@_res/xBtn.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -154,13 +154,13 @@
             </Label>
             <ImageView layoutX="242.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/xBtn.png" />
+                  <Image url="@_res/xBtn.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label layoutX="388.0" layoutY="198.0" text="126005">
+            <Label fx:id="total_4" layoutX="388.0" layoutY="198.0" text="126005">
                <font>
                   <Font name="Aldo the Apache" size="15.0" />
                </font>
@@ -177,85 +177,85 @@
             </Label>
             <ImageView layoutX="625.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/xBtn.png" />
+                  <Image url="@_res/xBtn.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label layoutX="528.0" layoutY="506.0" text="126005">
+            <Label fx:id="total_5" layoutX="528.0" layoutY="506.0" text="126005">
                <font>
                   <Font name="Aldo the Apache" size="15.0" />
                </font>
             </Label>
-            <ImageView layoutX="64.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="off_2" layoutX="65.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/wait.png" />
+                  <Image url="@_res/disable.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="45.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="off_3" layoutX="45.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/wait.png" />
+                  <Image url="@_res/disable.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="65.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="off_1" layoutX="65.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/wait.png" />
+                  <Image url="@_res/disable.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="301.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="off_4" layoutX="301.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/wait.png" />
+                  <Image url="@_res/disable.png" />
                </image>
             </ImageView>
             <ImageView layoutX="476.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/dealSell.png" />
+                  <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
             <ImageView layoutX="586.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/dealSell.png" />
+                  <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
             <ImageView layoutX="530.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/dealSell.png" />
+                  <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
             <ImageView layoutX="405.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/dealSell.png" />
+                  <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
             <ImageView layoutX="515.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/dealSell.png" />
+                  <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
             <ImageView layoutX="459.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/dealSell.png" />
+                  <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
             <ImageView layoutX="211.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/infoLine.png" />
+                  <Image url="@_res/infoLine.png" />
                </image>
             </ImageView>
             <ImageView layoutX="211.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/infoLine.png" />
+                  <Image url="@_res/infoLine.png" />
                </image>
             </ImageView>
             <ImageView layoutX="211.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/infoLine.png" />
+                  <Image url="@_res/infoLine.png" />
                </image>
             </ImageView>
             <ImageView layoutX="594.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/infoLine.png" />
+                  <Image url="@_res/infoLine.png" />
                </image>
             </ImageView>
             <Label layoutX="813.0" layoutY="261.0" text="99" textAlignment="CENTER" textFill="#00000080">
@@ -348,6 +348,14 @@
                   <Font name="Consolas Bold" size="11.0" />
                </font>
             </Label>
+            <ImageView fx:id="switch_1" layoutX="47.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@_res/off.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
          </children>
       </Pane>
    </children>

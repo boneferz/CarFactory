@@ -1,5 +1,5 @@
 package sample.model;
 
 public interface EventDispatcher {
-	void dispatchEvent(String eventType);
+	void dispatchEvent(CustomEvent event);
 }

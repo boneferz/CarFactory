@@ -1,6 +1,7 @@
 package sample.model.suppliers;
 
 import sample.model.Config;
+import sample.model.CustomEvent;
 import sample.model.ModelFacade;
 import sample.model.SupplierEvents;
 
@@ -8,16 +9,20 @@ import static sample.model.suppliers.SupplierState.*;
 
 public class EnginesSupplier {
 	
+	private int index;
+	
 	private SupplierState state;
 	private boolean isEnabled;
 	private int total;
 	private int speeed;
+	private int problemChance;
 	
-	// work logic
-	
-	public EnginesSupplier() {
+	public EnginesSupplier(int index) {
+		this.index = index;
+		
 		init();
 	}
+	
 	
 	private void init() {
 		total = 0;
@@ -35,13 +40,24 @@ public class EnginesSupplier {
 		if (isEnabled) {
 			isEnabled = false;
 			state = OFF;
-			ModelFacade.eventDispatcher.dispatchEvent(SupplierEvents.SWITCH_OFF.getValue());
-		}
-		else {
+			
+			ModelFacade.eventDispatcher.dispatchEvent(
+					new CustomEvent(SupplierEvents.SWITCH_OFF.getValue(), index));
+		} else {
 			isEnabled = true;
 			state = RUNNING;
-			ModelFacade.eventDispatcher.dispatchEvent(SupplierEvents.SWITCH_ON.getValue());
+			
+			ModelFacade.eventDispatcher.dispatchEvent(
+					new CustomEvent(SupplierEvents.SWITCH_ON.getValue(), index));
+			
+			run();
 		}
+	}
+	
+	private void run() {
+		total++;
+		ModelFacade.eventDispatcher.dispatchEvent(
+				new CustomEvent(SupplierEvents.MADE.getValue(), index));
 	}
 	
 	public void pause() {

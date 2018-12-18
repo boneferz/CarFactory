@@ -13,7 +13,7 @@ public class ModelFacade {
 		eventDispatcher = listener;
 	}
 	
-	public void engineSupplierSwitcher() {
-		model.enginesSupplier.switcher();
+	public void engineSupplierSwitcher(int i) {
+		model.suppliers[i].switcher();
 	}
 }

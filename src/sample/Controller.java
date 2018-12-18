@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.input.MouseEvent;
 import sample.model.ModelFacade;
+import sample.view.View;
 
 public class Controller {
 	
@@ -17,8 +18,11 @@ public class Controller {
 	
 	private void clickListener(MouseEvent e) {
 		
-		if (e.getTarget() == view.switcherOffBg) {
-			model.engineSupplierSwitcher();
+		for (int i = 0; i < view.suppliers.length; i++) {
+			if (view.suppliers[i] != null
+			 && e.getTarget() == view.suppliers[i].switcherOff) {
+				model.engineSupplierSwitcher(i);
+			}
 		}
 		
 	}
