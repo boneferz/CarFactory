@@ -5,6 +5,7 @@ public enum Supplier_Events {
 	SWITCH_OFF("switch_off"),
 	MADE("made"),
 	PROBLEM("problem"),
+	PROBLEM_FIXED("problem_fixed"),
 	RESUME("resume"),
 	PAUSE("PAUSE");
 	
@@ -16,10 +17,5 @@ public enum Supplier_Events {
 	
 	public String getValue() {
 		return value;
-	}
-	
-	@Override
-	public String toString() {
-		return super.toString();
 	}
 }

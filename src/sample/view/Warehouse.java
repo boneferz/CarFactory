@@ -27,8 +27,6 @@ public class Warehouse {
 		float scaleValue;
 		if (i != 0) {
 			scaleValue = getScaleValue(Config.getInstance().warehouseSizeMax, i);
-			System.out.println(scaleValue);
-			System.out.println("");
 		} else {
 			scaleValue = 0;
 		}
@@ -42,12 +40,7 @@ public class Warehouse {
 	}
 	
 	public float getScaleValue(int a, int b) {
-		float aFloat = (float) a;
-		float bFloat = (float) b;
-		System.out.println("a:" + a + ", b:" + b);
-		System.out.println("a/b:" + (a/b));
-		float proc = 100 / (aFloat / bFloat);
-		System.out.println("proc (100/(a/b)):" + proc);
+		float proc = 100 / ((float) a / (float) b);
 		return proc / 100;
 	}
 }

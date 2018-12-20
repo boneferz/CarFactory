@@ -185,6 +185,10 @@ public class View {
 			case UPDATE:
 				warehouses[index].totalUpdate(total);
 				break;
+				
+			case RELEASED:
+				warehouses[index].totalUpdate(total);
+				break;
 		}
 	}
 	
@@ -196,7 +200,6 @@ public class View {
 			case SWITCH_ON:
 				suppliers[index].on();
 				break;
-				
 			case SWITCH_OFF:
 				suppliers[index].off();
 				break;
@@ -208,9 +211,15 @@ public class View {
 			case PAUSE:
 				suppliers[index].pause();
 				break;
-				
 			case RESUME:
 				suppliers[index].resume();
+				break;
+				
+			case PROBLEM:
+				suppliers[index].problem();
+				break;
+			case PROBLEM_FIXED:
+				suppliers[index].problemFixed();
 				break;
 		}
 	}

@@ -22,6 +22,9 @@ public class Factory {
 	Image waitImg = new Image("sample/_res/wait.png");
 	ImageView wait = new ImageView(waitImg);
 	
+	Image problemImg = new Image("sample/_res/problem.png");
+	ImageView problem = new ImageView(problemImg);
+	
 	public ImageView switcherOff;
 	ImageView offIcon;
 	Label switchText;
@@ -49,6 +52,7 @@ public class Factory {
 	}
 	
 	private void init() {
+		totalText.setStyle("-fx-text-fill: gainsboro");
 		switchText.setText("off");
 		totalUpdate(0);
 	}
@@ -57,8 +61,13 @@ public class Factory {
 		running.setRotate(running.getRotate() + 5);
 	}
 	
+	public void totalUpdate(int total) {
+		totalText.setText(String.valueOf(total));
+	}
+	
 	public void on() {
 		switchText.setText("on");
+		
 		
 		parent.getChildren().add(switcherOn);
 		switcherOn.setX(switcherOff.getLayoutX());
@@ -70,8 +79,8 @@ public class Factory {
 		running.setY(offIcon.getLayoutY());
 		
 		timeline.play();
+		totalText.setStyle("-fx-text-fill: black");
 	}
-	
 	public void off() {
 		switchText.setText("off");
 		
@@ -81,19 +90,28 @@ public class Factory {
 			parent.getChildren().remove(wait);
 		
 		timeline.stop();
+		totalText.setStyle("-fx-text-fill: gainsboro");
 	}
 	
 	public void pause() {
 		parent.getChildren().add(wait);
 		wait.setX(offIcon.getLayoutX());
 		wait.setY(offIcon.getLayoutY());
+		totalText.setStyle("-fx-text-fill: orange");
 	}
-	
 	public void resume() {
 		parent.getChildren().remove(wait);
+		totalText.setStyle("-fx-text-fill: black");
 	}
 	
-	public void totalUpdate(int total) {
-		totalText.setText(String.valueOf(total));
+	public void problem() {
+		parent.getChildren().add(problem);
+		problem.setX(offIcon.getLayoutX());
+		problem.setY(offIcon.getLayoutY());
+		totalText.setStyle("-fx-text-fill: crimson");
+	}
+	public void problemFixed() {
+		parent.getChildren().remove(problem);
+		totalText.setStyle("-fx-text-fill: black");
 	}
 }

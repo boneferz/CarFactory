@@ -27,7 +27,6 @@ public class Controller {
 		for (int i = 0; i < view.xBtn.length; i++) { // X btn
 			if (e.getTarget() == view.xBtn[i]) {
 				model.engineWarehouseXBtn(i);
-				model.engineSupplierResume(i);
 			}
 		}
 	}
