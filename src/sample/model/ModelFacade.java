@@ -1,19 +1,46 @@
 package sample.model;
 
+import sample.model.events.Custom_EventObject;
+import sample.model.observer.EventDispatcher;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ModelFacade {
-	Model model;
 	
-	static public EventDispatcher eventDispatcher;
+	Model model;
+	private static Map<Enum, EventDispatcher> map = new HashMap<>();
 	
 	public ModelFacade() {
 		model = new Model();
 	}
 	
-	public void addEventListener(EventDispatcher listener) {
-		eventDispatcher = listener;
-	}
 	
+	// fasade
 	public void engineSupplierSwitcher(int i) {
 		model.suppliers[i].switcher();
 	}
+	public void engineSupplierResume(int i) {
+		model.suppliers[i].resume();
+	}
+	public void engineWarehouseXBtn(int i) {
+		model.suppliers[i].warehouse.clear();
+	}
+	
+	
+	
+	// Observable
+	public void addEventListener(Enum eventType, EventDispatcher listener) {
+		map.put(eventType, listener);
+	}
+	
+	// Observable
+	public static void fireEvent(Object source, Enum eventType, Enum event) {
+		Custom_EventObject eventObject = new Custom_EventObject(source, eventType, event);
+		for (Enum eventTypeKey : map.keySet()) {
+			if (eventObject.getType().equals(eventTypeKey))
+				map.get(eventTypeKey).dispatchEvent(eventObject);
+		}
+	}
+	
+	
 }

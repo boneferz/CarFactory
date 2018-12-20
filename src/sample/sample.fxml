@@ -40,11 +40,6 @@
                   <Font name="Aldo the Apache" size="10.0" />
                </font>
             </Label>
-            <Label layoutX="214.0" layoutY="241.0" text="99/99">
-               <font>
-                  <Font name="Aldo the Apache" size="13.0" />
-               </font>
-            </Label>
             <Label fx:id="total_1" layoutX="89.0" layoutY="185.0" text="126005">
                <font>
                   <Font name="Aldo the Apache" size="15.0" />
@@ -126,7 +121,7 @@
                   <Font name="Aldo the Apache" size="15.0" />
                </font>
             </Label>
-            <ImageView layoutX="242.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView layoutX="242.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" fx:id="xBtn_2">
                <image>
                   <Image url="@_res/xBtn.png" />
                </image>
@@ -134,12 +129,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label layoutX="214.0" layoutY="108.0" text="99/99">
+            <Label fx:id="warehouseTotal_1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="205.0" layoutY="108.0" minWidth="35.0" prefHeight="13.0" prefWidth="35.0" text="99/99" textAlignment="CENTER">
                <font>
                   <Font name="Aldo the Apache" size="13.0" />
                </font>
             </Label>
-            <ImageView layoutX="242.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView layoutX="242.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" fx:id="xBtn_1">
                <image>
                   <Image url="@_res/xBtn.png" />
                </image>
@@ -147,12 +142,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label layoutX="214.0" layoutY="415.0" text="99/99">
-               <font>
-                  <Font name="Aldo the Apache" size="13.0" />
-               </font>
-            </Label>
-            <ImageView layoutX="242.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView layoutX="242.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true" fx:id="xBtn_3">
                <image>
                   <Image url="@_res/xBtn.png" />
                </image>
@@ -170,12 +160,7 @@
                   <Font name="Aldo the Apache" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="597.0" layoutY="168.0" text="99/99">
-               <font>
-                  <Font name="Aldo the Apache" size="13.0" />
-               </font>
-            </Label>
-            <ImageView layoutX="625.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView layoutX="625.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" fx:id="xBtn_4">
                <image>
                   <Image url="@_res/xBtn.png" />
                </image>
@@ -238,22 +223,22 @@
                   <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="211.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="totalLine_1" layoutX="211.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/infoLine.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="211.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="totalLine_2" layoutX="211.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/infoLine.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="211.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="totalLine_3" layoutX="211.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/infoLine.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="594.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="totalLine_4" layoutX="594.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/infoLine.png" />
                </image>
@@ -356,6 +341,21 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
+            <Label fx:id="warehouseTotal_2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="205.0" layoutY="241.0" minWidth="35.0" prefHeight="13.0" prefWidth="35.0" text="99/99" textAlignment="CENTER">
+               <font>
+                  <Font name="Aldo the Apache" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="warehouseTotal_4" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="588.0" layoutY="168.0" minWidth="35.0" prefHeight="13.0" prefWidth="35.0" text="99/99" textAlignment="CENTER">
+               <font>
+                  <Font name="Aldo the Apache" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="warehouseTotal_3" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="205.0" layoutY="415.0" minWidth="35.0" prefHeight="13.0" prefWidth="35.0" text="99/99" textAlignment="CENTER">
+               <font>
+                  <Font name="Aldo the Apache" size="13.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

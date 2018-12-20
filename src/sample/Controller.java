@@ -18,13 +18,18 @@ public class Controller {
 	
 	private void clickListener(MouseEvent e) {
 		
-		for (int i = 0; i < view.suppliers.length; i++) {
-			if (view.suppliers[i] != null
-			 && e.getTarget() == view.suppliers[i].switcherOff) {
+		for (int i = 0; i < view.suppliers.length; i++) { // switch on\off
+			if (e.getTarget() == view.switchBtn[i]) {
 				model.engineSupplierSwitcher(i);
 			}
 		}
 		
+		for (int i = 0; i < view.xBtn.length; i++) { // X btn
+			if (e.getTarget() == view.xBtn[i]) {
+				model.engineWarehouseXBtn(i);
+				model.engineSupplierResume(i);
+			}
+		}
 	}
 	
 }

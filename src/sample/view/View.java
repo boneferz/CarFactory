@@ -4,11 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import sample.model.CustomEvent;
-import sample.model.EventDispatcher;
-import sample.model.ModelFacade;
-import sample.model.SupplierEvents;
+import sample.model.*;
+import sample.model.events.Custom_EventObject;
+import sample.model.events.EventType;
+import sample.model.events.Supplier_Events;
+import sample.model.events.Warehouse_Events;
 import sample.model.suppliers.EnginesSupplier;
+import sample.model.suppliers.warehauses.EngineWarehouse;
 
 public class View {
 	
@@ -46,7 +48,22 @@ public class View {
 	private Label total_2;
 	
 	@FXML
+	private ImageView xBtn_2;
+	
+	@FXML
+	private Label warehouseTotal_1;
+	
+	@FXML
+	private ImageView xBtn_1;
+	
+	@FXML
+	private ImageView xBtn_3;
+	
+	@FXML
 	private Label total_4;
+	
+	@FXML
+	private ImageView xBtn_4;
 	
 	@FXML
 	private Label total_5;
@@ -58,67 +75,124 @@ public class View {
 	private ImageView off_3;
 	
 	@FXML
+	private ImageView off_1;
+	
+	@FXML
 	private ImageView off_4;
 	
 	@FXML
-	private ImageView off_1;
+	private ImageView totalLine_1;
+	
+	@FXML
+	private ImageView totalLine_2;
+	
+	@FXML
+	private ImageView totalLine_3;
+	
+	@FXML
+	private ImageView totalLine_4;
 	
 	@FXML
 	private ImageView switch_1;
 	
+	@FXML
+	private Label warehouseTotal_2;
+	
+	@FXML
+	private Label warehouseTotal_4;
+	
+	@FXML
+	private Label warehouseTotal_3;
+	
 	ModelFacade model;
 	
-	EngineSupplier supplier;
-	public EngineSupplier[] suppliers = new EngineSupplier[4];
-	ImageView[] switchArr = new ImageView[4];
-	Label[] switchTextArr = new Label[4];
-	ImageView[] offIconArr = new ImageView[4];
-	Label[] totalArr = new Label[4];
+	Factory supplier;
+	public Factory[] suppliers = new Factory[4];
+	
+	public ImageView[] switchBtn = new ImageView[4];
+	Label[] switchText = new Label[4];
+	ImageView[] offIcon = new ImageView[4];
+	Label[] total = new Label[4];
+	Label[] warehouseTotal = new Label[4];
+	public ImageView[] xBtn = new ImageView[4];
+	public ImageView[] totalLines = new ImageView[4];
+	
+	Warehouse warehouse;
+	public Warehouse[] warehouses = new Warehouse[4];
 	
 	@FXML
 	void initialize() {
 		
-		switchArr[0] = switch_1;
-		switchArr[1] = switch_2;
-		switchArr[2] = switch_3;
-		switchArr[3] = switch_4;
+		switchBtn[0] = switch_1;
+		switchBtn[1] = switch_2;
+		switchBtn[2] = switch_3;
+		switchBtn[3] = switch_4;
 		
-		switchTextArr[0] = switchText_1;
-		switchTextArr[1] = switchText_2;
-		switchTextArr[2] = switchText_3;
-		switchTextArr[3] = switchText_4;
+		switchText[0] = switchText_1;
+		switchText[1] = switchText_2;
+		switchText[2] = switchText_3;
+		switchText[3] = switchText_4;
 		
-		offIconArr[0] = off_1;
-		offIconArr[1] = off_2;
-		offIconArr[2] = off_3;
-		offIconArr[3] = off_4;
+		offIcon[0] = off_1;
+		offIcon[1] = off_2;
+		offIcon[2] = off_3;
+		offIcon[3] = off_4;
 		
-		totalArr[0] = total_1;
-		totalArr[1] = total_2;
-		totalArr[2] = total_3;
-		totalArr[3] = total_4;
+		total[0] = total_1;
+		total[1] = total_2;
+		total[2] = total_3;
+		total[3] = total_4;
+		
+		warehouseTotal[0] = warehouseTotal_1;
+		warehouseTotal[1] = warehouseTotal_2;
+		warehouseTotal[2] = warehouseTotal_3;
+		warehouseTotal[3] = warehouseTotal_4;
+		
+		xBtn[0] = xBtn_1;
+		xBtn[1] = xBtn_2;
+		xBtn[2] = xBtn_3;
+		xBtn[3] = xBtn_4;
+		
+		totalLines[0] = totalLine_1;
+		totalLines[1] = totalLine_2;
+		totalLines[2] = totalLine_3;
+		totalLines[3] = totalLine_4;
 		
 		for (int i = 0; i < suppliers.length; i++) {
-			supplier = new EngineSupplier(
-					rootPane, switchArr[i], switchTextArr[i], offIconArr[i], totalArr[i]);
+			supplier = new Factory(rootPane,
+					switchBtn[i], switchText[i], offIcon[i], total[i]);
 			suppliers[i] = supplier;
 		}
 		
+		for (int i = 0; i < warehouses.length; i++) {
+			warehouse = new Warehouse(warehouseTotal[i], xBtn[i], totalLines[i]);
+			warehouses[i] = warehouse;
+		}
 	}
 	
 	public void setModel(ModelFacade model) {
 		this.model = model;
 
-		EventDispatcher listener = this::modelListener;
-		model.addEventListener(listener);
+		model.addEventListener(EventType.SUPPLIER, this::suppliersListener);
+		model.addEventListener(EventType.WAREHOUSE, this::warehouseListener);
 	}
 	
-	void modelListener(CustomEvent event) {
-		// suppliers
+	void warehouseListener(Custom_EventObject event) {
+		int index = ((EngineWarehouse) event.getSource()).index;
+		int total = ((EngineWarehouse) event.getSource()).occupancy;
+		
+		switch ((Warehouse_Events) event.getEvent()) {
+			case UPDATE:
+				warehouses[index].totalUpdate(total);
+				break;
+		}
+	}
+	
+	void suppliersListener(Custom_EventObject event) {
 		int index = ((EnginesSupplier) event.getSource()).index;
 		int total = ((EnginesSupplier) event.getSource()).total;
 		
-		switch (event.getType()) {
+		switch ((Supplier_Events) event.getEvent()) {
 			case SWITCH_ON:
 				suppliers[index].on();
 				break;
@@ -128,10 +202,19 @@ public class View {
 				break;
 				
 			case MADE:
-				suppliers[index].made(total);
+				suppliers[index].totalUpdate(total);
+				break;
+				
+			case PAUSE:
+				suppliers[index].pause();
+				break;
+				
+			case RESUME:
+				suppliers[index].resume();
 				break;
 		}
 	}
+	
 	
 	public Pane getRootPane() {
 		return rootPane;

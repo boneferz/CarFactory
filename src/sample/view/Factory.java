@@ -9,9 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-import java.awt.Point;
-
-public class EngineSupplier {
+public class Factory {
 	
 	Pane parent;
 	
@@ -21,6 +19,9 @@ public class EngineSupplier {
 	Image runningImg = new Image("sample/_res/runing.png");
 	ImageView running = new ImageView(runningImg);
 	
+	Image waitImg = new Image("sample/_res/wait.png");
+	ImageView wait = new ImageView(waitImg);
+	
 	public ImageView switcherOff;
 	ImageView offIcon;
 	Label switchText;
@@ -28,7 +29,7 @@ public class EngineSupplier {
 	
 	Timeline timeline;
 	
-	public EngineSupplier(
+	public Factory(
 			Pane parent,
 			ImageView switcherOff, Label switchText, ImageView iconOff, Label totalText) {
 		this.parent = parent;
@@ -44,14 +45,12 @@ public class EngineSupplier {
 		timeline.getKeyFrames().add(new KeyFrame(
 				Duration.millis(50), timeline.getOnFinished()));
 		
-		
-		
 		init();
 	}
 	
 	private void init() {
 		switchText.setText("off");
-		totalText.setText("0");
+		totalUpdate(0);
 	}
 	
 	private void onUpdate(ActionEvent e) {
@@ -78,11 +77,23 @@ public class EngineSupplier {
 		
 		parent.getChildren().remove(switcherOn);
 		parent.getChildren().remove(running);
+		if (parent.getChildren().contains(wait))
+			parent.getChildren().remove(wait);
 		
 		timeline.stop();
 	}
 	
-	public void made(int total) {
+	public void pause() {
+		parent.getChildren().add(wait);
+		wait.setX(offIcon.getLayoutX());
+		wait.setY(offIcon.getLayoutY());
+	}
+	
+	public void resume() {
+		parent.getChildren().remove(wait);
+	}
+	
+	public void totalUpdate(int total) {
 		totalText.setText(String.valueOf(total));
 	}
 }
