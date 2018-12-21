@@ -185,10 +185,6 @@ public class View {
 			case UPDATE:
 				warehouses[index].totalUpdate(total);
 				break;
-				
-			case RELEASED:
-				warehouses[index].totalUpdate(total);
-				break;
 		}
 	}
 	
@@ -204,7 +200,7 @@ public class View {
 				suppliers[index].off();
 				break;
 				
-			case MADE:
+			case CREATED:
 				suppliers[index].totalUpdate(total);
 				break;
 				

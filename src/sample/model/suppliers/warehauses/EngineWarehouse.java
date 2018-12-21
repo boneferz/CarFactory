@@ -17,7 +17,7 @@ public class EngineWarehouse {
 	
 	public int index;
 	
-	private int size;
+	public int size;
 	public int occupancy;
 	private List<Engine> warehouseArr;
 	
@@ -32,30 +32,31 @@ public class EngineWarehouse {
 	public void put(Engine detail) {
 		warehouseArr.add(detail);
 		setOccupancy(++occupancy);
-		
-		if (occupancy + 1 > size) {
-			dispatchEvent(this, EventType.WAREHOUSE, Warehouse_Events.OVERFLOW);
-		}
 	}
 	
 	public void clear() {
 		setOccupancy(0);
 		warehouseArr.clear();
-		
-		ModelFacade.fireEvent(this, EventType.WAREHOUSE, Warehouse_Events.RELEASED);
-		dispatchEvent(this, EventType.WAREHOUSE, Warehouse_Events.RELEASED);
 	}
 	
 	void setOccupancy(int i) {
 		occupancy = i;
+		dispatchEvent(this, EventType.WAREHOUSE, Warehouse_Events.RELEASED);
 		ModelFacade.fireEvent(this, EventType.WAREHOUSE, Warehouse_Events.UPDATE);
 	}
 	
+	void pull() {
+	}
+	
+	
+	
 	// event dispatching
 	EventDispatcher listener;
+	
 	public void addEventListener(EventDispatcher l) {
 		this.listener = l;
 	}
+	
 	public void dispatchEvent(Object source, Enum eventType, Enum event) {
 		Custom_EventObject eventObject = new Custom_EventObject(source, eventType, event);
 		listener.dispatchEvent(eventObject);

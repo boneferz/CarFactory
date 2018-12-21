@@ -1,10 +1,11 @@
 package sample.model.events;
 
 public enum Warehouse_Events {
-	PULL("pull"),
+	PULLED("pulled"),
 	UPDATE("update"),
 	RELEASED("released"),
-	OVERFLOW("overflow");
+	OVERFLOW("overflow"),
+	PUSHED("pushed");
 	
 	private String value;
 	

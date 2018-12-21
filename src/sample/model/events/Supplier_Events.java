@@ -3,9 +3,13 @@ package sample.model.events;
 public enum Supplier_Events {
 	SWITCH_ON("switch_on"),
 	SWITCH_OFF("switch_off"),
-	MADE("made"),
+	
+	CREATED("created"),
+	WAIT("wait"),
+	
 	PROBLEM("problem"),
 	PROBLEM_FIXED("problem_fixed"),
+	
 	RESUME("resume"),
 	PAUSE("PAUSE");
 	

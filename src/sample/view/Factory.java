@@ -68,8 +68,8 @@ public class Factory {
 	public void on() {
 		switchText.setText("on");
 		
-		
 		parent.getChildren().add(switcherOn);
+		
 		switcherOn.setX(switcherOff.getLayoutX());
 		switcherOn.setY(switcherOff.getLayoutY());
 		switcherOn.setDisable(true);
@@ -86,8 +86,6 @@ public class Factory {
 		
 		parent.getChildren().remove(switcherOn);
 		parent.getChildren().remove(running);
-		if (parent.getChildren().contains(wait))
-			parent.getChildren().remove(wait);
 		
 		timeline.stop();
 		totalText.setStyle("-fx-text-fill: gainsboro");
@@ -95,23 +93,29 @@ public class Factory {
 	
 	public void pause() {
 		parent.getChildren().add(wait);
+		
 		wait.setX(offIcon.getLayoutX());
 		wait.setY(offIcon.getLayoutY());
+		
 		totalText.setStyle("-fx-text-fill: orange");
 	}
 	public void resume() {
 		parent.getChildren().remove(wait);
+		
 		totalText.setStyle("-fx-text-fill: black");
 	}
 	
 	public void problem() {
 		parent.getChildren().add(problem);
+		
 		problem.setX(offIcon.getLayoutX());
 		problem.setY(offIcon.getLayoutY());
+		
 		totalText.setStyle("-fx-text-fill: crimson");
 	}
 	public void problemFixed() {
 		parent.getChildren().remove(problem);
+		
 		totalText.setStyle("-fx-text-fill: black");
 	}
 }

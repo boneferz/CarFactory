@@ -9,6 +9,7 @@ import sample.model.ModelFacade;
 import sample.model.events.Custom_EventObject;
 import sample.model.events.EventType;
 import sample.model.events.Supplier_Events;
+import sample.model.events.Warehouse_Events;
 import sample.model.suppliers.details.Engine;
 import sample.model.suppliers.warehauses.EngineWarehouse;
 
@@ -46,15 +47,20 @@ public class EnginesSupplier {
 		isProblem = false;
 		isPaused = false;
 		total = 0;
-		speeed = Config.getInstance().factorysSpeed;
-		problemChance = Config.getInstance().problemChance;
-		problemDelay = Config.getInstance().problemDelay;
+		speeed = 100; //Config.getInstance().factorysSpeed;
+		problemChance = 25; //Config.getInstance().problemChance;
+		problemDelay = 3000; //Config.getInstance().problemDelay;
 	}
 	
 	void warehouseListener(Custom_EventObject e) {
-		System.out.println("EnginesSupplier.warehouseListener !");
-		System.out.println(e.getEvent());
-//		resume();
+		switch ((Warehouse_Events) e.getEvent()) {
+			case RELEASED:
+				if (isPaused) {
+					if (isEnabled) resume(); // resume ENABLED
+					else isPaused = false; // resume DISABLED
+				}
+				break;
+		}
 	}
 	
 	public void switcher() {
@@ -67,35 +73,23 @@ public class EnginesSupplier {
 	
 	private void on() {
 		isEnabled = true;
-		timeline.play();
-		
 		ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.SWITCH_ON);
-
-//		if (isPaused) pause();
+		
+		if (isPaused) {
+			ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.PAUSE);
+		} else {
+			timeline.play();
+		}
 	}
 	
 	private void off() {
-		isEnabled = false;
-		
-		timeline.stop();
-		ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.SWITCH_OFF);
-		
-//		if (!isProblem) {
-//			if (isPaused) resume();
-//		}
-	}
-	
-	private void work(ActionEvent e) {
-		System.out.println("work");
-		create();
-//		tryProblem();
-//
-//		if (!isProblem) {
-//			System.out.println("create --- if problem ON > ERROR");
-//			create();
-//		} else {
-//			System.out.println("ERROR!");
-//		}
+		if (!isProblem) {
+			isEnabled = false;
+			timeline.stop();
+			
+			if (isPaused) ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.RESUME);
+			ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.SWITCH_OFF);
+		}
 	}
 	
 	public void pause() {
@@ -105,48 +99,59 @@ public class EnginesSupplier {
 	}
 	
 	public void resume() {
-		if (isEnabled && isPaused) {
-			isPaused = false;
-			
-			ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.RESUME);
-			timeline.play();
+		isPaused = false;
+		timeline.play();
+		ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.RESUME);
+	}
+	
+	private void work(ActionEvent e) {
+		if (!isProblem) {
+			tryProblem();
+			if (isProblem) return;
 		}
+		
+		create();
 	}
 	
 	public void create() {
-		setTotal(++total);
 		put(new Engine(total));
+		setTotal(++total);
+		
+		if (isProblem) fixedProblem();
+		
+		if (warehouse.occupancy + 1 > warehouse.size) {
+			if (!isPaused) pause();
+		}
 	}
 	
 	public void setTotal(int total) {
 		this.total = total;
-		ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.MADE);
+		ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.CREATED);
 	}
 	
 	public void put(Engine detail) {
-//		if (!warehouse.put(detail)) {
-//			pause();
-//		}
 		warehouse.put(detail);
 	}
 	
 	public void tryProblem() {
-		int random = (int) (Math.random() * 100);
-		if (random < problemChance) {
-			System.out.println("█ problem : ON");
+		if (Math.random() * 100 < problemChance) {
 			isProblem = true;
 			timeline.stop();
 			ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.PROBLEM);
 			
 			Timeline delay = new Timeline(new KeyFrame(Duration.millis(problemDelay)));
-			delay.setOnFinished(e -> {
-				timeline.play();
-				ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.PROBLEM_FIXED);
-				isProblem = false;
-				System.out.println("    █ problem : OFF");
-			});
+			delay.setOnFinished(this::problemDelay);
 			delay.play();
 		}
+	}
+	
+	void problemDelay(ActionEvent e) {
+		timeline.play();
+	}
+	
+	void fixedProblem() {
+		isProblem = false;
+		ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.PROBLEM_FIXED);
 	}
 	
 	public void changeSpeed() {
