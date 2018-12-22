@@ -29,8 +29,8 @@ public class Main extends Application {
 	    primaryStage.setScene(new Scene(root, 857, 527));
 	    primaryStage.setResizable(false);
 	    primaryStage.sizeToScene();
-	    primaryStage.setX(500);
-	    primaryStage.setY(100);
+	    primaryStage.setX(600);
+	    primaryStage.setY(60);
 	    primaryStage.show();
 	    
 	    // mvc

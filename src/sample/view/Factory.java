@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import sample.model.suppliers.EnginesSupplier;
 
 public class Factory {
 	
@@ -29,17 +30,20 @@ public class Factory {
 	ImageView offIcon;
 	Label switchText;
 	Label totalText;
+	ImageView speedSlider;
 	
 	Timeline timeline;
+	int speedSliderX = 0;
 	
 	public Factory(
 			Pane parent,
-			ImageView switcherOff, Label switchText, ImageView iconOff, Label totalText) {
+			ImageView switcherOff, Label switchText, ImageView iconOff, Label totalText, ImageView speedSlider) {
 		this.parent = parent;
 		this.switcherOff = switcherOff;
 		this.switchText = switchText;
 		this.offIcon = iconOff;
 		this.totalText = totalText;
+		this.speedSlider = speedSlider;
 		
 		timeline = new Timeline();
 		timeline.setOnFinished(this::onUpdate);
@@ -55,6 +59,8 @@ public class Factory {
 		totalText.setStyle("-fx-text-fill: gainsboro");
 		switchText.setText("off");
 		totalUpdate(0);
+		
+		speedSliderX = (int) speedSlider.getLayoutX();
 	}
 	
 	private void onUpdate(ActionEvent e) {
@@ -117,5 +123,13 @@ public class Factory {
 		parent.getChildren().remove(problem);
 		
 		totalText.setStyle("-fx-text-fill: black");
+	}
+	
+	public void moveSpeedSlider(Object object) {
+		EnginesSupplier supplier = (EnginesSupplier) object;
+		
+		int slideX = supplier.sliderX - speedSliderX;
+		speedSlider.setX(slideX);
+		
 	}
 }

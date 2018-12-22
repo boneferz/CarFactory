@@ -33,6 +33,21 @@ public class View {
 	private Label total_3;
 	
 	@FXML
+	private ImageView SpeedSlider_1;
+	
+	@FXML
+	private ImageView SpeedSlider_2;
+	
+	@FXML
+	private ImageView SpeedSlider_3;
+	
+	@FXML
+	private ImageView SpeedSlider_4;
+	
+	@FXML
+	private ImageView SpeedSlider_5;
+	
+	@FXML
 	private ImageView switch_4;
 	
 	@FXML
@@ -116,6 +131,7 @@ public class View {
 	Label[] warehouseTotal = new Label[4];
 	public ImageView[] xBtn = new ImageView[4];
 	public ImageView[] totalLines = new ImageView[4];
+	public ImageView[] speedSlider = new ImageView[4];
 	
 	Warehouse warehouse;
 	public Warehouse[] warehouses = new Warehouse[4];
@@ -158,9 +174,14 @@ public class View {
 		totalLines[2] = totalLine_3;
 		totalLines[3] = totalLine_4;
 		
+		speedSlider[0] = SpeedSlider_1;
+		speedSlider[1] = SpeedSlider_2;
+		speedSlider[2] = SpeedSlider_3;
+		speedSlider[3] = SpeedSlider_4;
+		
 		for (int i = 0; i < suppliers.length; i++) {
 			supplier = new Factory(rootPane,
-					switchBtn[i], switchText[i], offIcon[i], total[i]);
+					switchBtn[i], switchText[i], offIcon[i], total[i], speedSlider[i]);
 			suppliers[i] = supplier;
 		}
 		
@@ -202,6 +223,10 @@ public class View {
 				
 			case CREATED:
 				suppliers[index].totalUpdate(total);
+				break;
+				
+			case MOVE_SPEED_SLIDER:
+				suppliers[index].moveSpeedSlider(event.getSource());
 				break;
 				
 			case PAUSE:

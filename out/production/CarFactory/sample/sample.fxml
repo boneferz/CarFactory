@@ -50,7 +50,7 @@
                   <Font name="Aldo the Apache" size="15.0" />
                </font>
             </Label>
-            <ImageView layoutX="89.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="SpeedSlider_1" layoutX="89.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/runner.png" />
                </image>
@@ -58,7 +58,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView layoutX="123.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="SpeedSlider_2" layoutX="89.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/runner.png" />
                </image>
@@ -66,7 +66,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView layoutX="106.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="SpeedSlider_3" layoutX="89.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/runner.png" />
                </image>
@@ -74,7 +74,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView layoutX="408.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="SpeedSlider_4" layoutX="390.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/runner.png" />
                </image>
@@ -82,7 +82,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView layoutX="546.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="SpeedSlider_5" layoutX="530.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/runner.png" />
                </image>

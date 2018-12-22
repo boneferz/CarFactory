@@ -7,6 +7,8 @@ public enum Supplier_Events {
 	CREATED("created"),
 	WAIT("wait"),
 	
+	MOVE_SPEED_SLIDER("move_speed_slider"),
+	
 	PROBLEM("problem"),
 	PROBLEM_FIXED("problem_fixed"),
 	

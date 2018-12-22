@@ -1,5 +1,6 @@
 package sample.model;
 
+import javafx.scene.input.MouseEvent;
 import sample.model.events.Custom_EventObject;
 import sample.model.observer.EventDispatcher;
 import java.util.HashMap;
@@ -22,6 +23,15 @@ public class ModelFacade {
 		model.suppliers[i].warehouse.clear();
 	}
 	
+	public void engineSupplierSpeedSliderPressed(int i, MouseEvent e) {
+		model.suppliers[i].mousePressed(e);
+	}
+	public void engineSupplierSpeedSliderDrag(int i, MouseEvent e) {
+		model.suppliers[i].mouseDrag(e);
+	}
+	public void engineSupplierSpeedSliderReleased(int i, MouseEvent e) {
+		model.suppliers[i].mouseRealised(e);
+	}
 	
 	// Observable
 	private static Map<Enum, EventDispatcher> map = new HashMap<>();
