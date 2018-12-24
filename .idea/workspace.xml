@@ -69,8 +69,8 @@
       <file leaf-file-name="Controller.java" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="18" column="90" lean-forward="true" selection-start-line="18" selection-start-column="90" selection-end-line="18" selection-end-column="90" />
+            <state relative-caret-position="282">
+              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -79,13 +79,33 @@
       <file leaf-file-name="View.java" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/view/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1143">
-              <caret line="139" column="23" lean-forward="false" selection-start-line="139" selection-start-column="23" selection-end-line="139" selection-end-column="23" />
+            <state relative-caret-position="382">
+              <caret line="232" column="41" lean-forward="true" selection-start-line="232" selection-start-column="41" selection-end-line="232" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1545464205107" expanded="false" signature="507:1807" ph="..." />
-                <marker date="1545464205107" expanded="true" signature="4211:4927" ph="..." />
+                <marker date="1545657534210" expanded="false" signature="507:1807" ph="..." />
+                <marker date="1545657534210" expanded="true" signature="4211:5027" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelFacade.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/model/ModelFacade.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="551">
+              <caret line="33" column="4" lean-forward="true" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Factory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/view/Factory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2182">
+              <caret line="130" column="16" lean-forward="false" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -93,8 +113,8 @@
       <file leaf-file-name="EnginesSupplier.java" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/model/suppliers/EnginesSupplier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="178" column="8" lean-forward="true" selection-start-line="178" selection-start-column="8" selection-end-line="178" selection-end-column="8" />
+            <state relative-caret-position="627">
+              <caret line="209" column="65" lean-forward="false" selection-start-line="209" selection-start-column="65" selection-end-line="209" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -167,19 +187,19 @@
         <option value="$PROJECT_DIR$/src/sample/model/events/CustomEventObject.java" />
         <option value="$PROJECT_DIR$/src/sample/model/events/Event.java" />
         <option value="$PROJECT_DIR$/src/sample/model/events/Custom_EventObject.java" />
-        <option value="$PROJECT_DIR$/src/sample/model/Model.java" />
         <option value="$PROJECT_DIR$/src/sample/view/Warehouse.java" />
         <option value="$PROJECT_DIR$/src/sample/model/observer/EventDispatcher.java" />
         <option value="$PROJECT_DIR$/src/sample/model/suppliers/warehauses/EngineWarehouse.java" />
         <option value="$PROJECT_DIR$/src/sample/model/events/Warehouse_Events.java" />
         <option value="$PROJECT_DIR$/src/sample/model/events/Supplier_Events.java" />
-        <option value="$PROJECT_DIR$/src/sample/model/data/Config.java" />
-        <option value="$PROJECT_DIR$/src/sample/view/View.java" />
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/src/sample/model/Model.java" />
         <option value="$PROJECT_DIR$/src/sample/model/ModelFacade.java" />
+        <option value="$PROJECT_DIR$/src/sample/model/data/Config.java" />
         <option value="$PROJECT_DIR$/src/sample/view/Factory.java" />
-        <option value="$PROJECT_DIR$/src/sample/model/suppliers/EnginesSupplier.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
+        <option value="$PROJECT_DIR$/src/sample/view/View.java" />
+        <option value="$PROJECT_DIR$/src/sample/model/suppliers/EnginesSupplier.java" />
       </list>
     </option>
   </component>
@@ -197,7 +217,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="60" />
     <option name="y" value="-15" />
     <option name="width" value="1612" />
@@ -467,6 +487,14 @@
               <item name="sample" type="1f31426a:PackageElementNode" />
               <item name="model" type="1f31426a:PackageElementNode" />
               <item name="suppliers" type="1f31426a:PackageElementNode" />
+              <item name="details" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="CarFactory" type="58d84e3e:PackageViewProjectNode" />
+              <item name="CarFactory" type="616d4139:PackageViewModuleNode" />
+              <item name="sample" type="1f31426a:PackageElementNode" />
+              <item name="model" type="1f31426a:PackageElementNode" />
+              <item name="suppliers" type="1f31426a:PackageElementNode" />
               <item name="warehauses" type="1f31426a:PackageElementNode" />
             </path>
             <path>
@@ -474,6 +502,24 @@
               <item name="CarFactory" type="616d4139:PackageViewModuleNode" />
               <item name="sample" type="1f31426a:PackageElementNode" />
               <item name="view" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="CarFactory" type="58d84e3e:PackageViewProjectNode" />
+              <item name="CarFactory" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+            </path>
+            <path>
+              <item name="CarFactory" type="58d84e3e:PackageViewProjectNode" />
+              <item name="CarFactory" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="javafx" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="CarFactory" type="58d84e3e:PackageViewProjectNode" />
+              <item name="CarFactory" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="javafx" type="1f31426a:PackageElementNode" />
+              <item name="animation" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
@@ -493,7 +539,7 @@
     <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Diff &amp; Merge" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
@@ -668,12 +714,12 @@
       <workItem from="1545425715943" duration="378000" />
       <workItem from="1545426132730" duration="106000" />
       <workItem from="1545455058618" duration="24518000" />
-      <workItem from="1545631777926" duration="2274000" />
+      <workItem from="1545631777926" duration="19905000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181127000" />
+    <option name="totallyTimeSpent" value="198758000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -685,7 +731,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -697,13 +743,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964823" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30416667" sideWeight="0.49949747" order="12" side_tool="true" content_ui="combo" x="0" y="387" width="1920" height="265" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.49949747" order="12" side_tool="true" content_ui="combo" x="0" y="387" width="1920" height="265" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964823" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30416667" sideWeight="0.5005025" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5005025" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12916666" sideWeight="0.7222982" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14270833" sideWeight="0.7222982" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.4964824" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -734,7 +780,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -743,36 +789,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -1031,75 +1047,146 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/model/events/Supplier_Events.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+        <state relative-caret-position="171">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/model/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="171">
+          <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/java/jdk1.8.0_192/javafx-src.zip!/javafx/animation/StrokeTransitionBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="35" column="19" lean-forward="false" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
+          <folding>
+            <element signature="docComment;class#StrokeTransitionBuilder#0" expanded="false" />
+            <element signature="docComment;method#create#0;class#StrokeTransitionBuilder#0" expanded="false" />
+            <element signature="docComment;method#duration#0;class#StrokeTransitionBuilder#0" expanded="false" />
+            <element signature="docComment;method#fromValue#0;class#StrokeTransitionBuilder#0" expanded="false" />
+            <element signature="docComment;method#shape#0;class#StrokeTransitionBuilder#0" expanded="false" />
+            <element signature="docComment;method#toValue#0;class#StrokeTransitionBuilder#0" expanded="false" />
+            <element signature="docComment;method#build#0;class#StrokeTransitionBuilder#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/java/jdk1.8.0_192/javafx-src.zip!/javafx/animation/Animation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11095">
+          <caret line="107" column="21" lean-forward="true" selection-start-line="107" selection-start-column="21" selection-end-line="107" selection-end-column="21" />
+          <folding>
+            <element signature="docComment;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#INDEFINITE#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;class#Status#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#PAUSED#0;class#Status#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#RUNNING#0;class#Status#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#STOPPED#0;class#Status#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#parent#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#rate#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#currentRate#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#cycleDuration#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#totalDuration#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#currentTime#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#delay#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#cycleCount#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#autoReverse#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#status#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#getTargetFramerate#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;field#onFinished#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#getCuePoints#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#jumpTo#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#jumpTo#1;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#playFrom#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#playFrom#1;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#play#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#playFromStart#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#stop#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#pause#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#Animation#0;class#Animation#0" expanded="false" />
+            <element signature="docComment;method#Animation#1;class#Animation#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/java/jdk1.8.0_192/javafx-src.zip!/javafx/animation/Timeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="719">
+          <caret line="205" column="37" lean-forward="false" selection-start-line="205" selection-start-column="37" selection-end-line="205" selection-end-column="37" />
+          <folding>
+            <element signature="docComment;class#Timeline#0" expanded="false" />
+            <element signature="docComment;method#getKeyFrames#0;class#Timeline#0" expanded="false" />
+            <element signature="docComment;method#Timeline#0;class#Timeline#0" expanded="false" />
+            <element signature="docComment;method#Timeline#1;class#Timeline#0" expanded="false" />
+            <element signature="docComment;method#Timeline#2;class#Timeline#0" expanded="false" />
+            <element signature="docComment;method#Timeline#3;class#Timeline#0" expanded="false" />
+            <element signature="docComment;method#stop#0;class#Timeline#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/model/data/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="53" lean-forward="false" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="34" column="8" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+        <state relative-caret-position="266">
+          <caret line="14" column="42" lean-forward="true" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/model/ModelFacade.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="32" column="24" lean-forward="false" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+        <state relative-caret-position="551">
+          <caret line="33" column="4" lean-forward="true" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/view/Factory.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1536">
-          <caret line="130" column="43" lean-forward="false" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
+        <state relative-caret-position="76">
+          <caret line="10" column="39" lean-forward="true" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1143">
-          <caret line="139" column="23" lean-forward="false" selection-start-line="139" selection-start-column="23" selection-end-line="139" selection-end-column="23" />
+        <state relative-caret-position="382">
+          <caret line="232" column="41" lean-forward="true" selection-start-line="232" selection-start-column="41" selection-end-line="232" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1545464205107" expanded="false" signature="507:1807" ph="..." />
-            <marker date="1545464205107" expanded="true" signature="4211:4927" ph="..." />
+            <marker date="1545657534210" expanded="false" signature="507:1807" ph="..." />
+            <marker date="1545657534210" expanded="true" signature="4211:5027" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/view/Factory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="18" column="90" lean-forward="true" selection-start-line="18" selection-start-column="90" selection-end-line="18" selection-end-column="90" />
+        <state relative-caret-position="2182">
+          <caret line="130" column="16" lean-forward="false" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/model/suppliers/EnginesSupplier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="178" column="8" lean-forward="true" selection-start-line="178" selection-start-column="8" selection-end-line="178" selection-end-column="8" />
+        <state relative-caret-position="627">
+          <caret line="209" column="65" lean-forward="false" selection-start-line="209" selection-start-column="65" selection-end-line="209" selection-end-column="65" />
           <folding />
         </state>
       </provider>

@@ -107,7 +107,6 @@ public class Factory {
 	}
 	public void resume() {
 		parent.getChildren().remove(wait);
-		
 		totalText.setStyle("-fx-text-fill: black");
 	}
 	
@@ -121,13 +120,16 @@ public class Factory {
 	}
 	public void problemFixed() {
 		parent.getChildren().remove(problem);
-		
 		totalText.setStyle("-fx-text-fill: black");
 	}
 	
 	public void moveSpeedSlider(Object object) {
 		EnginesSupplier supplier = (EnginesSupplier) object;
-		
-		speedSlider.setX(supplier.sliderPosition);
+		speedSlider.setX(supplier.sliderPosition - speedSliderStartX);
+	}
+	
+	public void initSpeedSlider(Object source) {
+		EnginesSupplier supplier = (EnginesSupplier) source;
+		speedSlider.setX(supplier.initSliderPosition);
 	}
 }

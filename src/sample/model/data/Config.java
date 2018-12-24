@@ -13,8 +13,8 @@ public class Config {
 	// min\max values
 	public final int warehouseSizeMin = 5;
 	public final int warehouseSizeMax = 5;
-	public final int factorysSpeedMax  = 100;   // 100-1000 ms
-	public final int factorysSpeedMin  = 2000;   // 100-1000 ms
+	public final int factorysSpeedMax  = 50;   // 100-1000 ms
+	public final int factorysSpeedMin  = 1500;   // 100-1000 ms
 	
 	
 	public static Config getInstance() {

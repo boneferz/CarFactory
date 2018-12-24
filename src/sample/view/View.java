@@ -229,6 +229,10 @@ public class View {
 				suppliers[index].moveSpeedSlider(event.getSource());
 				break;
 				
+			case INIT_SPEED_SLIDER:
+				suppliers[index].initSpeedSlider(event.getSource());
+				break;
+				
 			case PAUSE:
 				suppliers[index].pause();
 				break;

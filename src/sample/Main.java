@@ -29,17 +29,17 @@ public class Main extends Application {
 	    primaryStage.setScene(new Scene(root, 857, 527));
 	    primaryStage.setResizable(false);
 	    primaryStage.sizeToScene();
-	    primaryStage.setX(600);
+	    primaryStage.setX(500);
 	    primaryStage.setY(60);
 	    primaryStage.show();
 	    
 	    // mvc
 	    model = new ModelFacade();
 	    view = UIview.getController();
-	    view.setModel(model);
 	    controller = new Controller(view, model);
-	    
-	    
+	
+	    view.setModel(model);
+	    model.createModel();
     }
 	
 }

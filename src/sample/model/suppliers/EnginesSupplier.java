@@ -1,5 +1,6 @@
 package sample.model.suppliers;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -23,15 +24,23 @@ public class EnginesSupplier {
 	private boolean isEnabled;
 	private boolean isProblem;
 	private boolean isPaused;
+	
 	public int total;
 	private int speed;
-	private int newSpeed;
 	private int speedMax;
 	private int speedMin;
 	private int problemChance;
 	private int problemDelay;
+	
 	Engine engine;
 	public EngineWarehouse warehouse;
+	
+	int sliderStartPosition = 0;
+	public int sliderPosition = 0;
+	public int initSliderPosition;
+	int deltaPosition = 34;
+	double ratio;
+	int moveDistance;
 	
 	public EnginesSupplier(int index) {
 		this.index = index;
@@ -52,20 +61,24 @@ public class EnginesSupplier {
 		isProblem = false;
 		isPaused = false;
 		total = 0;
-		problemChance = 25; //Config.getInstance().problemChance;
+		problemChance = 10; //Config.getInstance().problemChance;
 		problemDelay = 3000; //Config.getInstance().problemDelay;
 		
-		speed = Config.getInstance().factorysSpeed;
-		speedMin = Config.getInstance().factorysSpeed; //Config.getInstance().problemDelay;
-		speedMax = Config.getInstance().factorysSpeed; //Config.getInstance().problemDelay;
+		speedMin = Config.getInstance().factorysSpeedMin;
+		speedMax = Config.getInstance().factorysSpeedMax;
+		speed = speedMax; //Config.getInstance().factorysSpeed;
+		
+		int deltaValue = speedMax - speedMin;
+		ratio = deltaValue / deltaPosition;
+		setSpeedSliderStartPosition();
 	}
 	
 	void warehouseListener(Custom_EventObject e) {
 		switch ((Warehouse_Events) e.getEvent()) {
 			case RELEASED:
 				if (isPaused) {
-					if (isEnabled) resume(); // resume ENABLED
-					else isPaused = false; // resume DISABLED
+					if (isEnabled) resume();
+					else isPaused = false;
 				}
 				break;
 		}
@@ -162,37 +175,51 @@ public class EnginesSupplier {
 		ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.PROBLEM_FIXED);
 	}
 	
-	
-	// --------------------------------------
-	ImageView sliderImage;
-	
-	int sliderStartPosition = 0;
-	public int sliderPosition = 0;
-	
-//	int deltaPosition = 34;
-//	int deltaValue;
-//	float stepPixelToValue = deltaValue / deltaPosition;
-	
-	
-	public void mousePressed(MouseEvent e) {
-		sliderImage = (ImageView) e.getTarget();
+	public void mousePressed(MouseEvent e) { // [press]
+		ImageView sliderImage = (ImageView) e.getTarget();
 		
-		if (sliderStartPosition == 0) { // save
+		// save
+		if (sliderStartPosition == 0) {
 			sliderStartPosition = (int) sliderImage.getLayoutX();
 		}
 	}
-	public void mouseDrag(MouseEvent e) {
+	public void mouseDrag(MouseEvent e) { // [drag]
 		int moveX = (int) e.getX();
 		
-		sliderPosition = (moveX - 5) - sliderStartPosition;
+		sliderPosition = moveX - 5;
+		moveDistance = sliderPosition - sliderStartPosition;
 		
-		if (sliderPosition >= 0 && sliderPosition <= 33) {
-			ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.MOVE_SPEED_SLIDER);
+		if (moveDistance < 0) {
+			moveDistance = 0;
+			sliderPosition = sliderStartPosition;
+		} else if (moveDistance > deltaPosition) {
+			moveDistance = deltaPosition;
+			sliderPosition = sliderStartPosition + deltaPosition;
 		}
+		
+		ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.MOVE_SPEED_SLIDER);
+	}
+	public void mouseRealised(MouseEvent e) { // [relise]
+		changeSpeed();
 	}
 	
 	public void changeSpeed() {
-	
+		speed = (int) ((moveDistance) * ratio) + speedMin;
+		System.out.println("> new speed: " + speed);
+		
+		if (timeline.getStatus().equals(Animation.Status.RUNNING)) {
+			timeline.stop();
+			timeline.getKeyFrames().clear();
+			timeline.getKeyFrames().add(new KeyFrame(Duration.millis(speed), timeline.getOnFinished()));
+			timeline.play();
+		} else {
+			timeline.getKeyFrames().clear();
+			timeline.getKeyFrames().add(new KeyFrame(Duration.millis(speed), timeline.getOnFinished()));
+		}
 	}
 	
+	private void setSpeedSliderStartPosition() {
+		initSliderPosition = (int) (((speed - speedMin) / ratio));
+		ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.INIT_SPEED_SLIDER);
+	}
 }

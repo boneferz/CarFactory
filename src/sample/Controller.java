@@ -18,9 +18,10 @@ public class Controller {
 		
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_PRESSED, this::pressListener);
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_DRAGGED, this::dragListener);
+		view.getRootPane().addEventHandler(MouseEvent.MOUSE_RELEASED, this::releaseListener);
 	}
 	
-	// speed slide
+	// speedSlider
 	private void pressListener(MouseEvent e) {
 		for (int i = 0; i < view.speedSlider.length; i++) { // press
 			if (e.getTarget() == view.speedSlider[i]) {
@@ -35,7 +36,15 @@ public class Controller {
 			}
 		}
 	}
+	private void releaseListener(MouseEvent e) {
+		for (int i = 0; i < view.speedSlider.length; i++) { // release
+			if (e.getTarget() == view.speedSlider[i]) {
+				model.engineSupplierSpeedSliderReleased(i, e);
+			}
+		}
+	}
 	
+	// anything  - click
 	private void clickListener(MouseEvent e) {
 		
 		for (int i = 0; i < view.suppliers.length; i++) { // switch on\off
@@ -43,7 +52,6 @@ public class Controller {
 				model.engineSupplierSwitcher(i);
 			}
 		}
-		
 		for (int i = 0; i < view.xBtn.length; i++) { // X btn
 			if (e.getTarget() == view.xBtn[i]) {
 				model.engineWarehouseXBtn(i);
