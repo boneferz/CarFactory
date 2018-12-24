@@ -162,44 +162,33 @@ public class EnginesSupplier {
 		ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.PROBLEM_FIXED);
 	}
 	
-	int saveSliderInitX;
 	
-	public int sliderX = 0;
-	public int initSliderX = 0;
-	public int SliderXTemp = 0;
-	public int startX;
-	public int moveX;
-	int moveDistance;
+	// --------------------------------------
+	ImageView sliderImage;
 	
-	int deltaPosition = 34;
+	int sliderStartPosition = 0;
+	public int sliderPosition = 0;
 	
-	public int newX;
-	int deltaValue;
-	float stepPixelToValue = deltaValue / deltaPosition;
+//	int deltaPosition = 34;
+//	int deltaValue;
+//	float stepPixelToValue = deltaValue / deltaPosition;
+	
 	
 	public void mousePressed(MouseEvent e) {
-		startX = (int) e.getX();
-		System.out.println("# startX: " + startX);
-		System.out.println("");
+		sliderImage = (ImageView) e.getTarget();
 		
-		System.out.println(e);
-		System.out.println(((ImageView) e.getTarget()).getX());
-		System.out.println();
-		
-		saveSliderInitX = (int) ((ImageView) e.getTarget()).getLayoutX();
-	}
-	public void mouseDrag(MouseEvent e) {
-		moveX = (int) e.getX();
-		
-		sliderX = moveX - 5;
-		
-		int sliderPos = sliderX - saveSliderInitX;
-		if (sliderPos >= 0 && sliderPos <= 33) {
-			ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.MOVE_SPEED_SLIDER);
+		if (sliderStartPosition == 0) { // save
+			sliderStartPosition = (int) sliderImage.getLayoutX();
 		}
 	}
-	public void mouseRealised(MouseEvent e) {
-		System.out.println(" >> sliderX: " + sliderX);
+	public void mouseDrag(MouseEvent e) {
+		int moveX = (int) e.getX();
+		
+		sliderPosition = (moveX - 5) - sliderStartPosition;
+		
+		if (sliderPosition >= 0 && sliderPosition <= 33) {
+			ModelFacade.fireEvent(this, EventType.SUPPLIER, Supplier_Events.MOVE_SPEED_SLIDER);
+		}
 	}
 	
 	public void changeSpeed() {

@@ -18,7 +18,6 @@ public class Controller {
 		
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_PRESSED, this::pressListener);
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_DRAGGED, this::dragListener);
-		view.getRootPane().addEventHandler(MouseEvent.MOUSE_RELEASED, this::releaseListener);
 	}
 	
 	// speed slide
@@ -33,13 +32,6 @@ public class Controller {
 		for (int i = 0; i < view.speedSlider.length; i++) { // drag
 			if (e.getTarget() == view.speedSlider[i]) {
 				model.engineSupplierSpeedSliderDrag(i, e);
-			}
-		}
-	}
-	private void releaseListener(MouseEvent e) {
-		for (int i = 0; i < view.speedSlider.length; i++) { // release
-			if (e.getTarget() == view.speedSlider[i]) {
-				model.engineSupplierSpeedSliderReleased(i, e);
 			}
 		}
 	}

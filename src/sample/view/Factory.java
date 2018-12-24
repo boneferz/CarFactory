@@ -33,7 +33,7 @@ public class Factory {
 	ImageView speedSlider;
 	
 	Timeline timeline;
-	int speedSliderX = 0;
+	int speedSliderStartX = 0;
 	
 	public Factory(
 			Pane parent,
@@ -60,7 +60,7 @@ public class Factory {
 		switchText.setText("off");
 		totalUpdate(0);
 		
-		speedSliderX = (int) speedSlider.getLayoutX();
+		speedSliderStartX = (int) speedSlider.getLayoutX();
 	}
 	
 	private void onUpdate(ActionEvent e) {
@@ -128,8 +128,6 @@ public class Factory {
 	public void moveSpeedSlider(Object object) {
 		EnginesSupplier supplier = (EnginesSupplier) object;
 		
-		int slideX = supplier.sliderX - speedSliderX;
-		speedSlider.setX(slideX);
-		
+		speedSlider.setX(supplier.sliderPosition);
 	}
 }

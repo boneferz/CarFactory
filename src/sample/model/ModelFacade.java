@@ -29,9 +29,9 @@ public class ModelFacade {
 	public void engineSupplierSpeedSliderDrag(int i, MouseEvent e) {
 		model.suppliers[i].mouseDrag(e);
 	}
-	public void engineSupplierSpeedSliderReleased(int i, MouseEvent e) {
-		model.suppliers[i].mouseRealised(e);
-	}
+//	public void engineSupplierSpeedSliderReleased(int i, MouseEvent e) {
+//		model.suppliers[i].mouseRealised(e);
+//	}
 	
 	// Observable
 	private static Map<Enum, EventDispatcher> map = new HashMap<>();
