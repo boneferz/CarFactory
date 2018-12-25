@@ -2,6 +2,16 @@ package sample.model.observer;
 
 import sample.model.events.Custom_EventObject;
 
-public interface EventDispatcher {
-	void dispatchEvent(Custom_EventObject event);
+public abstract class EventDispatcher {
+	
+	EventListener listener;
+	
+	public void addEventListener(EventListener l) {
+		this.listener = l;
+	}
+	
+	public void dispatchEvent(Object source, Enum eventType, Enum event) {
+		Custom_EventObject eventObject = new Custom_EventObject(source, eventType, event);
+		listener.handle(eventObject);
+	}
 }

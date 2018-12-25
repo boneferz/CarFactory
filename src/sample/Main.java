@@ -5,12 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.model.ModelFacade;
-import sample.view.View;
+import sample.model.FacadeModel;
 
 public class Main extends Application {
 	
-	private ModelFacade model;
+	private FacadeModel model;
 	private View view;
 	private Controller controller;
 	
@@ -25,7 +24,7 @@ public class Main extends Application {
 	    FXMLLoader UIview = new FXMLLoader(getClass().getResource("sample.fxml"));
 	    Parent root = UIview.load();
 	    
-	    primaryStage.setTitle("Car Factory");
+	    primaryStage.setTitle("Car FactoryCar");
 	    primaryStage.setScene(new Scene(root, 857, 527));
 	    primaryStage.setResizable(false);
 	    primaryStage.sizeToScene();
@@ -34,7 +33,7 @@ public class Main extends Application {
 	    primaryStage.show();
 	    
 	    // mvc
-	    model = new ModelFacade();
+	    model = new FacadeModel();
 	    view = UIview.getController();
 	    controller = new Controller(view, model);
 	

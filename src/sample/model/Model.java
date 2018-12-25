@@ -1,18 +1,22 @@
 package sample.model;
 
-import sample.model.suppliers.EnginesSupplier;
+import sample.model.factory.FactoryCar;
+import sample.model.suppliers.Factory;
+import sample.model.suppliers.FactoryAccessorie;
+import sample.model.suppliers.FactoryBody;
+import sample.model.suppliers.FactoryEngine;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Model {
 	
-	public EnginesSupplier enginesSupplier;
-	public EnginesSupplier[] suppliers = new EnginesSupplier[4];
+	public List<Factory> supplier = new ArrayList<>();
 	
 	public Model() {
-		
-		for (int i = 0; i < suppliers.length; i++) {
-			enginesSupplier = new EnginesSupplier(i);
-			suppliers[i] = enginesSupplier;
-		}
-
+		supplier.add(new FactoryEngine(0));
+		supplier.add(new FactoryBody(1));
+		supplier.add(new FactoryAccessorie(2));
+		supplier.add(new FactoryCar(3));
 	}
 }

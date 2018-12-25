@@ -1,16 +1,14 @@
 package sample;
 
-import javafx.event.Event;
 import javafx.scene.input.MouseEvent;
-import sample.model.ModelFacade;
-import sample.view.View;
+import sample.model.FacadeModel;
 
 public class Controller {
 	
 	View view;
-	ModelFacade model;
+	FacadeModel model;
 	
-	public Controller(View view, ModelFacade model) {
+	public Controller(View view, FacadeModel model) {
 		this.view = view;
 		this.model = model;
 		
@@ -19,6 +17,7 @@ public class Controller {
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_PRESSED, this::pressListener);
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_DRAGGED, this::dragListener);
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_RELEASED, this::releaseListener);
+		
 	}
 	
 	// speedSlider
@@ -47,7 +46,7 @@ public class Controller {
 	// anything  - click
 	private void clickListener(MouseEvent e) {
 		
-		for (int i = 0; i < view.suppliers.length; i++) { // switch on\off
+		for (int i = 0; i < view.factoryUI.size(); i++) { // switch on\off
 			if (e.getTarget() == view.switchBtn[i]) {
 				model.engineSupplierSwitcher(i);
 			}
@@ -55,6 +54,11 @@ public class Controller {
 		for (int i = 0; i < view.xBtn.length; i++) { // X btn
 			if (e.getTarget() == view.xBtn[i]) {
 				model.engineWarehouseXBtn(i);
+			}
+		}
+		for (int i = 0; i < view.warehouseTotal.length; i++) { // X btn
+			if (e.getTarget() == view.warehouseTotal[i]) {
+				model.engineWarehousePull(i);
 			}
 		}
 	}

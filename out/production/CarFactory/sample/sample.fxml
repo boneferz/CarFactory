@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.View">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.View">
    <children>
       <ImageView pickOnBounds="true" preserveRatio="true">
          <image>
@@ -129,10 +129,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label fx:id="warehouseTotal_1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="205.0" layoutY="108.0" minWidth="35.0" prefHeight="13.0" prefWidth="35.0" text="99/99" textAlignment="CENTER">
+            <Label fx:id="warehouseTotal_1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="196.0" layoutY="108.0" minWidth="35.0" prefHeight="13.0" prefWidth="44.0" text="99/99" textAlignment="CENTER">
                <font>
                   <Font name="Aldo the Apache" size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <ImageView layoutX="242.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" fx:id="xBtn_1">
                <image>
@@ -341,20 +344,29 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label fx:id="warehouseTotal_2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="205.0" layoutY="241.0" minWidth="35.0" prefHeight="13.0" prefWidth="35.0" text="99/99" textAlignment="CENTER">
+            <Label fx:id="warehouseTotal_2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="196.0" layoutY="241.0" minWidth="35.0" prefHeight="13.0" prefWidth="44.0" text="99/99" textAlignment="CENTER">
                <font>
                   <Font name="Aldo the Apache" size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <Label fx:id="warehouseTotal_4" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="588.0" layoutY="168.0" minWidth="35.0" prefHeight="13.0" prefWidth="35.0" text="99/99" textAlignment="CENTER">
+            <Label fx:id="warehouseTotal_4" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="579.0" layoutY="168.0" minWidth="35.0" prefHeight="13.0" prefWidth="44.0" text="99/99" textAlignment="CENTER">
                <font>
                   <Font name="Aldo the Apache" size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <Label fx:id="warehouseTotal_3" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="205.0" layoutY="415.0" minWidth="35.0" prefHeight="13.0" prefWidth="35.0" text="99/99" textAlignment="CENTER">
+            <Label fx:id="warehouseTotal_3" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="196.0" layoutY="415.0" minWidth="35.0" prefHeight="13.0" prefWidth="44.0" text="99/99" textAlignment="CENTER">
                <font>
                   <Font name="Aldo the Apache" size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
          </children>
       </Pane>
