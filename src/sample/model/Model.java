@@ -1,6 +1,6 @@
 package sample.model;
 
-import sample.model.factory.FactoryCar;
+import sample.model.suppliers.FactoryCar;
 import sample.model.suppliers.Factory;
 import sample.model.suppliers.FactoryAccessorie;
 import sample.model.suppliers.FactoryBody;
@@ -18,5 +18,9 @@ public class Model {
 		supplier.add(new FactoryBody(1));
 		supplier.add(new FactoryAccessorie(2));
 		supplier.add(new FactoryCar(3));
+		
+		// ofice
+		
+		// dealers
 	}
 }

@@ -4,17 +4,18 @@ import sample.model.FacadeModel;
 import sample.model.data.Config;
 import sample.model.events.EventType;
 import sample.model.events.Warehouse_Events;
-import sample.model.observer.EventDispatcher;
+import sample.model.events.observer.EventDispatcher;
 import sample.model.suppliers.detail.Detail;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Warehouse extends EventDispatcher {
-	public int index;
+	private int index;
 	
-	public int size;
-	public int occupancy;
+	private int size;
+	private int occupancy;
+	
 	private List<Detail> warehouseArr;
 	
 	public Warehouse(int index) {
@@ -35,13 +36,12 @@ public abstract class Warehouse extends EventDispatcher {
 		dispatchEvent(this, EventType.WAREHOUSE, Warehouse_Events.RELEASED);
 		FacadeModel.fireEvent(this, EventType.WAREHOUSE, Warehouse_Events.UPDATE);
 		
-		Detail detail;
-		
+		/*Detail detail;
 		for (int j = 0; j < warehouseArr.size(); j++) {
 			detail = warehouseArr.get(j);
 			System.out.println( detail.id + ":id , " + detail.getClass().getSimpleName());
 		}
-		System.out.println("");
+		System.out.println("");*/
 	}
 	
 	public void clear() {
@@ -50,11 +50,23 @@ public abstract class Warehouse extends EventDispatcher {
 	}
 	
 	public Detail pull() {
-		System.out.println("-");
+//		System.out.println("-");
 		if (occupancy > 0) {
 			setOccupancy(--occupancy);
 			return warehouseArr.remove(0);
 		}
 		return null;
+	}
+	
+	public int getSize() {
+		return size;
+	}
+	
+	public int getOccupancy() {
+		return occupancy;
+	}
+	
+	public int getIndex() {
+		return index;
 	}
 }

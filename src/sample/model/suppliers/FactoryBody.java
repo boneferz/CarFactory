@@ -1,5 +1,6 @@
 package sample.model.suppliers;
 
+import sample.model.data.GlobalData;
 import sample.model.suppliers.detail.Body;
 import sample.model.suppliers.warehause.WarehouseBody;
 
@@ -13,6 +14,8 @@ public class FactoryBody extends Factory {
 	protected void initWarehouse() {
 		super.warehouse = new WarehouseBody(index);
 		super.warehouse.addEventListener(this::warehouseListener);
+		
+		GlobalData.getInstance().warehouseBody = warehouse;
 	}
 	
 	@Override

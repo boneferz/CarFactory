@@ -21,106 +21,106 @@ public class View {
 	
 	@FXML
 	private Pane rootPane;
-	
+
 	@FXML
 	private ImageView switch_2;
-	
+
 	@FXML
 	private Label switchText_1;
-	
+
 	@FXML
 	private Label switchText_2;
-	
+
 	@FXML
 	private Label total_1;
-	
+
 	@FXML
 	private Label total_3;
-	
+
 	@FXML
 	private ImageView SpeedSlider_1;
-	
+
 	@FXML
 	private ImageView SpeedSlider_2;
-	
+
 	@FXML
 	private ImageView SpeedSlider_3;
-	
+
 	@FXML
 	private ImageView SpeedSlider_4;
-	
+
 	@FXML
 	private ImageView SpeedSlider_5;
-	
+
 	@FXML
 	private ImageView switch_4;
-	
+
 	@FXML
 	private Label switchText_4;
-	
+
 	@FXML
 	private ImageView switch_3;
-	
+
 	@FXML
 	private Label switchText_3;
-	
+
 	@FXML
 	private Label total_2;
-	
+
 	@FXML
 	private ImageView xBtn_2;
-	
+
 	@FXML
 	private Label warehouseTotal_1;
-	
+
 	@FXML
 	private ImageView xBtn_1;
-	
+
 	@FXML
 	private ImageView xBtn_3;
-	
+
 	@FXML
 	private Label total_4;
-	
+
 	@FXML
 	private ImageView xBtn_4;
-	
+
 	@FXML
 	private Label total_5;
-	
+
 	@FXML
 	private ImageView off_2;
-	
+
 	@FXML
 	private ImageView off_3;
-	
+
 	@FXML
 	private ImageView off_1;
-	
+
 	@FXML
 	private ImageView off_4;
-	
+
 	@FXML
 	private ImageView totalLine_1;
-	
+
 	@FXML
 	private ImageView totalLine_2;
-	
+
 	@FXML
 	private ImageView totalLine_3;
-	
+
 	@FXML
 	private ImageView totalLine_4;
-	
+
 	@FXML
 	private ImageView switch_1;
-	
+
 	@FXML
 	private Label warehouseTotal_2;
-	
+
 	@FXML
 	private Label warehouseTotal_4;
-	
+
 	@FXML
 	private Label warehouseTotal_3;
 	
@@ -201,8 +201,8 @@ public class View {
 	}
 	
 	void warehouseListener(Custom_EventObject event) {
-		int index = ((Warehouse) event.getSource()).index;
-		int total = ((Warehouse) event.getSource()).occupancy;
+		int index = ((Warehouse) event.getSource()).getIndex();
+		int total = ((Warehouse) event.getSource()).getOccupancy();
 		
 		switch ((Warehouse_Events) event.getEvent()) {
 			case UPDATE:
@@ -231,8 +231,6 @@ public class View {
 				factoryUI.get(index).moveSpeedSlider(event.getSource());
 				break;
 			case INIT_SPEED_SLIDER:
-				System.out.println(factoryUI);
-				System.out.println(factoryUI.size());
 				factoryUI.get(index).initSpeedSlider(event.getSource());
 				break;
 				

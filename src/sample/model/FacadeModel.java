@@ -1,7 +1,7 @@
 package sample.model;
 
 import javafx.scene.input.MouseEvent;
-import sample.model.observer.EventDispatcherTyped;
+import sample.model.events.observer.EventDispatcherTyped;
 import sample.model.suppliers.detail.Detail;
 
 public class FacadeModel extends EventDispatcherTyped {
@@ -28,13 +28,6 @@ public class FacadeModel extends EventDispatcherTyped {
 		model.supplier.get(i).mouseRealised(e);
 	}
 	public void engineWarehousePull(int i) {
-		
 		Detail detail = model.supplier.get(i).warehouse.pull();
-		
-		if (detail != null) {
-			System.out.println(" -pull: " + detail.id + ":id , " + detail.getClass().getSimpleName());
-		} else {
-			System.out.println(" -pull:: " + detail);
-		}
 	}
 }

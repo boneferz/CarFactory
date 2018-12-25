@@ -59,7 +59,7 @@ public abstract class Factory {
 		isProblem = false;
 		isPaused = false;
 		total = 0;
-		problemChance = 10; //Config.getInstance().problemChance;
+		problemChance = 0; //Config.getInstance().problemChance;
 		problemDelay = 3000; //Config.getInstance().problemDelay;
 		
 		speedMin = Config.getInstance().factorysSpeedMin;
@@ -139,7 +139,7 @@ public abstract class Factory {
 		if (isProblem) toFixProblem();
 		
 		// on next
-		if (warehouse.occupancy + 1 > warehouse.size) {
+		if (warehouse.getOccupancy() + 1 > warehouse.getSize()) {
 			if (!isPaused) pause();
 		}
 	}

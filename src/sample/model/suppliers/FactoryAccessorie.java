@@ -1,5 +1,6 @@
 package sample.model.suppliers;
 
+import sample.model.data.GlobalData;
 import sample.model.suppliers.detail.Accessories;
 import sample.model.suppliers.warehause.WarehouseAccessorie;
 
@@ -13,6 +14,8 @@ public class FactoryAccessorie extends Factory {
 	protected void initWarehouse() {
 		super.warehouse = new WarehouseAccessorie(index);
 		super.warehouse.addEventListener(this::warehouseListener);
+		
+		GlobalData.getInstance().warehouseAccessories = warehouse;
 	}
 	
 	@Override

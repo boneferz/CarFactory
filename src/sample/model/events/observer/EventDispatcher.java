@@ -1,4 +1,4 @@
-package sample.model.observer;
+package sample.model.events.observer;
 
 import sample.model.events.Custom_EventObject;
 
