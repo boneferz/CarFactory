@@ -1,6 +1,6 @@
 package sample.model.data;
 
-import sample.model.suppliers.warehause.Warehouse;
+import sample.model.factories.warehause.Warehouse;
 
 public class GlobalData {
 	// data

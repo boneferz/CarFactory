@@ -20,8 +20,10 @@ public class WarehouseUI {
 	}
 	
 	public void totalUpdate(int i) {
+		// text
 		totalText.setText(i + "/" + Config.getInstance().warehouseSizeMax);
 		
+		// trsnsform - scale
 		totalLine.getTransforms().clear();
 		
 		float scaleValue;
@@ -35,7 +37,6 @@ public class WarehouseUI {
 		scale.setPivotX(0);
 		scale.setX(scaleValue);
 		totalLine.getTransforms().add(scale);
-		
 		totalLine.setScaleX(1);
 	}
 	

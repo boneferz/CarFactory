@@ -9,8 +9,8 @@ import sample.model.events.Custom_EventObject;
 import sample.model.events.EventType;
 import sample.model.events.Supplier_Events;
 import sample.model.events.Warehouse_Events;
-import sample.model.suppliers.Factory;
-import sample.model.suppliers.warehause.Warehouse;
+import sample.model.factories.Factory;
+import sample.model.factories.warehause.Warehouse;
 import sample.view.FactoryUI;
 import sample.view.WarehouseUI;
 

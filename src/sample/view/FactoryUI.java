@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import sample.model.suppliers.Factory;
+import sample.model.factories.Factory;
 
 public class FactoryUI {
 	
