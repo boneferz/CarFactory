@@ -10,12 +10,14 @@ import javafx.util.Duration;
 import sample.model.FacadeModel;
 import sample.model.data.Config;
 import sample.model.events.Custom_EventObject;
-import sample.model.events.EventType;
-import sample.model.events.Supplier_Events;
+import sample.model.events.Events;
+import sample.model.events.Factory_Events;
 import sample.model.events.Warehouse_Events;
+import sample.model.events.observer.EventDispatcher;
+import sample.model.factories.detail.Detail;
 import sample.model.factories.warehause.Warehouse;
 
-public abstract class Factory {
+public abstract class Factory extends EventDispatcher {
 	public int index;
 	
 	Timeline timeline;
@@ -31,6 +33,7 @@ public abstract class Factory {
 	private int problemDelay;
 	
 	public Warehouse warehouse;
+	Detail detai;
 	
 	int sliderStartPosition = 0;
 	public int sliderPosition = 0;
@@ -50,8 +53,8 @@ public abstract class Factory {
 		timeline.getKeyFrames().add(new KeyFrame(Duration.millis(speed), timeline.getOnFinished()));
 		
 		initWarehouse();
+		warehouse.addEventListener(this::warehouseListener);
 	}
-	
 	protected abstract void initWarehouse();
 	
 	private void init() {
@@ -72,7 +75,7 @@ public abstract class Factory {
 	}
 	
 	public void warehouseListener(Custom_EventObject e) {
-		switch ((Warehouse_Events) e.getEvent()) {
+		switch ((Warehouse_Events) e.getType()) {
 			case RELEASED:
 				if (isPaused) {
 					if (isEnabled) resume(); // standart resume
@@ -92,10 +95,10 @@ public abstract class Factory {
 	
 	public void on() {
 		isEnabled = true;
-		FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.SWITCH_ON);
+		FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.SWITCH_ON);
 		
 		if (isPaused) {
-			FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.PAUSE);
+			FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.PAUSE);
 		} else {
 			timeline.play();
 		}
@@ -106,24 +109,24 @@ public abstract class Factory {
 			isEnabled = false;
 			timeline.stop();
 			
-			if (isPaused) FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.RESUME);
-			FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.SWITCH_OFF);
+			if (isPaused) FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.RESUME);
+			FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.SWITCH_OFF);
 		}
 	}
 	
 	public void pause() {
 		isPaused = true;
 		timeline.stop();
-		FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.PAUSE);
+		FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.PAUSE);
 	}
 	
 	public void resume() {
 		isPaused = false;
 		timeline.play();
-		FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.RESUME);
+		FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.RESUME);
 	}
 	
-	private void work(ActionEvent e) {
+	void work(ActionEvent e) {
 		if (!isProblem) {
 			tryProblem();
 			if (isProblem) return;
@@ -131,8 +134,10 @@ public abstract class Factory {
 		creating();
 	}
 	
+	protected abstract void createDetail();
 	public void creating() {
 		createDetail();
+		warehousePut();
 		
 		totalAddNew();
 		if (isProblem) toFixProblem();
@@ -142,24 +147,28 @@ public abstract class Factory {
 		}
 	}
 	
+	void warehousePut() {
+		warehouse.put(detai);
+	}
+	
 	boolean isCanAddNextDetail() {
 		if (warehouse.getOccupancy() + 1 > warehouse.getSize())
 			return true;
 		return false;
 	}
 	
-	protected abstract void createDetail();
+	
 	
 	public void totalAddNew() {
 		this.total = ++total;
-		FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.CREATED);
+		FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.CREATED);
 	}
 	
 	public void tryProblem() {
 		if (Math.random() * 100 < problemChance) {
 			isProblem = true;
 			timeline.stop();
-			FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.PROBLEM);
+			FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.PROBLEM);
 			
 			Timeline delay = new Timeline(new KeyFrame(Duration.millis(problemDelay)));
 			delay.setOnFinished(this::problemDelay);
@@ -173,7 +182,7 @@ public abstract class Factory {
 	
 	void toFixProblem() {
 		isProblem = false;
-		FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.PROBLEM_FIXED);
+		FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.PROBLEM_FIXED);
 	}
 	
 	public void mousePressed(MouseEvent e) { // [press]
@@ -199,7 +208,7 @@ public abstract class Factory {
 			sliderPosition = sliderStartPosition + deltaPosition;
 		}
 		
-		FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.MOVE_SPEED_SLIDER);
+		FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.MOVE_SPEED_SLIDER);
 	}
 	
 	public void mouseRealised(MouseEvent e) { // [relise]
@@ -223,6 +232,6 @@ public abstract class Factory {
 	
 	private void setSpeedSliderStartPosition() {
 		initSliderPosition = (int) (((speed - speedMin) / ratio));
-		FacadeModel.fireEvent(this, EventType.SUPPLIER, Supplier_Events.INIT_SPEED_SLIDER);
+		FacadeModel.fireEvent(this, Events.FACTORY, Factory_Events.INIT_SPEED_SLIDER);
 	}
 }

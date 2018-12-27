@@ -1,6 +1,7 @@
 package sample.model.factories;
 
-public enum FactoryState {
+@Deprecated
+public enum StateFactory {
 	OFF("off"),
 	RUNNING("running"),
 	WAIT("wait"),
@@ -8,7 +9,7 @@ public enum FactoryState {
 	
 	private String value;
 	
-	FactoryState(String value) {
+	StateFactory(String value) {
 		this.value = value;
 	}
 	

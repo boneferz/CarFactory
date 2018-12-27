@@ -45,7 +45,6 @@ public class Controller {
 	
 	// anything  - click
 	private void clickListener(MouseEvent e) {
-		
 		for (int i = 0; i < view.factoryUI.size(); i++) { // switch on\off
 			if (e.getTarget() == view.switchBtn[i]) {
 				model.engineSupplierSwitcher(i);

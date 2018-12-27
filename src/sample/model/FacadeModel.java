@@ -12,21 +12,21 @@ public class FacadeModel extends EventDispatcherTyped {
 	}
 	
 	public void engineSupplierSwitcher(int i) {
-		model.supplier.get(i).switcher();
+		model.factory.get(i).switcher();
 	}
 	public void engineWarehouseXBtn(int i) {
-		model.supplier.get(i).warehouse.clear();
+		model.factory.get(i).warehouse.clear();
 	}
 	public void engineSupplierSpeedSliderPressed(int i, MouseEvent e) {
-		model.supplier.get(i).mousePressed(e);
+		model.factory.get(i).mousePressed(e);
 	}
 	public void engineSupplierSpeedSliderDrag(int i, MouseEvent e) {
-		model.supplier.get(i).mouseDrag(e);
+		model.factory.get(i).mouseDrag(e);
 	}
 	public void engineSupplierSpeedSliderReleased(int i, MouseEvent e) {
-		model.supplier.get(i).mouseRealised(e);
+		model.factory.get(i).mouseRealised(e);
 	}
 	public void engineWarehousePull(int i) {
-		model.supplier.get(i).warehouse.pull();
+		model.factory.get(i).warehouse.pull();
 	}
 }

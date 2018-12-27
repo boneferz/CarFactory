@@ -6,7 +6,7 @@ public class Custom_EventObject extends EventObject {
 	private Enum eventType;
 	private Enum event;
 	
-	public Custom_EventObject(Object source, Enum eventType, Enum event) {
+	public Custom_EventObject(Object source, Enum event, Enum eventType) {
 		super(source);
 		
 		this.event = event;

@@ -6,8 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import sample.model.FacadeModel;
 import sample.model.events.Custom_EventObject;
-import sample.model.events.EventType;
-import sample.model.events.Supplier_Events;
+import sample.model.events.Events;
+import sample.model.events.Factory_Events;
 import sample.model.events.Warehouse_Events;
 import sample.model.factories.Factory;
 import sample.model.factories.warehause.Warehouse;
@@ -196,15 +196,28 @@ public class View {
 	public void setModel(FacadeModel model) {
 		this.model = model;
 
-		model.addEventListener(EventType.SUPPLIER, this::supplierListener);
-		model.addEventListener(EventType.WAREHOUSE, this::warehouseListener);
+		model.addEventListener(Events.FACTORY, this::supplierListener);
+		model.addEventListener(Events.WAREHOUSE, this::warehouseListener);
+		
+		model.addEventListener(Events.DEALER, this::dealerListener);
+		model.addEventListener(Events.OFFICE, this::officeListener);
+	}
+	
+	private void officeListener(Custom_EventObject e) {
+		System.out.println("View.officeListener");
+		System.out.println(e.getType());
+	}
+	
+	private void dealerListener(Custom_EventObject e) {
+		System.out.println("View.dealerListener");
+		System.out.println(e.getType());
 	}
 	
 	void warehouseListener(Custom_EventObject event) {
 		int index = ((Warehouse) event.getSource()).getIndex();
 		int total = ((Warehouse) event.getSource()).getOccupancy();
 		
-		switch ((Warehouse_Events) event.getEvent()) {
+		switch ((Warehouse_Events) event.getType()) {
 			case UPDATE:
 				warehouseUI.get(index).totalUpdate(total);
 				break;
@@ -215,7 +228,7 @@ public class View {
 		int index = ((Factory) event.getSource()).index;
 		int total = ((Factory) event.getSource()).total;
 		
-		switch ((Supplier_Events) event.getEvent()) {
+		switch ((Factory_Events) event.getType()) {
 			case SWITCH_ON:
 				factoryUI.get(index).on();
 				break;

@@ -2,7 +2,7 @@ package sample.model.factories.warehause;
 
 import sample.model.FacadeModel;
 import sample.model.data.Config;
-import sample.model.events.EventType;
+import sample.model.events.Events;
 import sample.model.events.Warehouse_Events;
 import sample.model.events.observer.EventDispatcher;
 import sample.model.factories.detail.Detail;
@@ -24,13 +24,13 @@ public abstract class Warehouse extends EventDispatcher {
 	public void put(Detail detail) {
 		setOccupancy(++occupancy);
 		warehouseArr.add(detail);
-		dispatchEvent(this, EventType.WAREHOUSE, Warehouse_Events.ADDED);
+		dispatchEvent(this, Events.WAREHOUSE, Warehouse_Events.ADDED);
 	}
 	
 	public Detail pull() {
 		if (occupancy > 0) {
 			setOccupancy(--occupancy);
-			dispatchEvent(this, EventType.WAREHOUSE, Warehouse_Events.RELEASED);
+			dispatchEvent(this, Events.WAREHOUSE, Warehouse_Events.RELEASED);
 			return warehouseArr.remove(0);
 		}
 		return null;
@@ -38,13 +38,13 @@ public abstract class Warehouse extends EventDispatcher {
 	
 	void setOccupancy(int i) {
 		occupancy = i;
-		FacadeModel.fireEvent(this, EventType.WAREHOUSE, Warehouse_Events.UPDATE);
+		FacadeModel.fireEvent(this, Events.WAREHOUSE, Warehouse_Events.UPDATE);
 	}
 	
 	public void clear() {
 		setOccupancy(0);
 		warehouseArr.clear();
-		dispatchEvent(this, EventType.WAREHOUSE, Warehouse_Events.RELEASED);
+		dispatchEvent(this, Events.WAREHOUSE, Warehouse_Events.RELEASED);
 		
 	}
 	
@@ -58,5 +58,8 @@ public abstract class Warehouse extends EventDispatcher {
 	}
 	public int getIndex() {
 		return index;
+	}
+	public List<Detail> getWarehouseArr() {
+		return warehouseArr;
 	}
 }

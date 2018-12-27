@@ -5,7 +5,6 @@ public enum Warehouse_Events {
 	RELEASED("released"),
 	ADDED("added");
 	
-	
 	private String value;
 	
 	Warehouse_Events(String value) {

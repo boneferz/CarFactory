@@ -17,8 +17,8 @@ public abstract class EventDispatcher {
 		listeners.remove(l);
 	}
 	
-	public void dispatchEvent(Object source, Enum eventType, Enum event) {
-		Custom_EventObject eventObject = new Custom_EventObject(source, eventType, event);
+	public void dispatchEvent(Object source, Enum event,  Enum eventType) {
+		Custom_EventObject eventObject = new Custom_EventObject(source, event, eventType);
 		for (EventListener l : listeners) {
 			l.handle(eventObject);
 		}

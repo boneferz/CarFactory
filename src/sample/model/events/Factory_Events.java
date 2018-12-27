@@ -1,11 +1,11 @@
 package sample.model.events;
 
-public enum Supplier_Events {
+public enum Factory_Events {
 	SWITCH_ON("switch_on"),
 	SWITCH_OFF("switch_off"),
 	
 	CREATED("created"),
-	WAIT("wait"),
+	/*WAIT("wait"),*/
 	
 	INIT_SPEED_SLIDER("init_speed_slider"),
 	MOVE_SPEED_SLIDER("move_speed_slider"),
@@ -18,7 +18,7 @@ public enum Supplier_Events {
 	
 	private String value;
 	
-	Supplier_Events(String value) {
+	Factory_Events(String value) {
 		this.value = value;
 	}
 	

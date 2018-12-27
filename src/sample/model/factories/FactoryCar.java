@@ -1,8 +1,8 @@
 package sample.model.factories;
 
+import jdk.nashorn.internal.objects.Global;
 import sample.model.data.GlobalData;
-import sample.model.events.Custom_EventObject;
-import sample.model.events.Warehouse_Events;
+import sample.model.events.*;
 import sample.model.factories.detail.Accessories;
 import sample.model.factories.detail.Body;
 import sample.model.factories.detail.Car;
@@ -15,8 +15,9 @@ public class FactoryCar extends Factory {
 	Engine engine;
 	Body body;
 	Accessories accessorie;
-	
 	Warehouse warehouseE, warehouseB, warehouseA;
+	
+	int needCars = 0;
 	
 	public FactoryCar(int index) {
 		super(index);
@@ -28,12 +29,16 @@ public class FactoryCar extends Factory {
 		warehouseE.addEventListener(this::warehouseDetailsListener);
 		warehouseB.addEventListener(this::warehouseDetailsListener);
 		warehouseA.addEventListener(this::warehouseDetailsListener);
+		
+		GlobalData.getInstance().factoryCar = this;
+		
+		switcher();
 	}
 	
 	@Override
 	public void initWarehouse() {
 		super.warehouse = new WarehouseCar(index);
-		super.warehouse.addEventListener(this::warehouseListener);
+		GlobalData.getInstance().warehouseCar = warehouse;
 	}
 	
 	@Override
@@ -47,7 +52,7 @@ public class FactoryCar extends Factory {
 	
 	@Override
 	public void warehouseListener(Custom_EventObject e) {
-		switch ((Warehouse_Events) e.getEvent()) {
+		switch ((Warehouse_Events) e.getType()) {
 			case RELEASED:
 				if (isDetailsAvailability() && isCanAddNextDetail()) {
 					if (isPaused) {
@@ -64,7 +69,7 @@ public class FactoryCar extends Factory {
 	}
 	
 	public void warehouseDetailsListener(Custom_EventObject e) {
-		switch ((Warehouse_Events) e.getEvent()) {
+		switch ((Warehouse_Events) e.getType()) {
 			case ADDED:
 				if (isDetailsAvailability() && isCanAddNextDetail()) {
 					if (isPaused) resume();
@@ -78,6 +83,8 @@ public class FactoryCar extends Factory {
 		if (isDetailsAvailability() && isCanAddNextDetail()) {
 			
 			createDetail();
+			super.warehousePut();
+			
 			totalAddNew();
 			
 			if (isProblem) toFixProblem();
@@ -109,7 +116,23 @@ public class FactoryCar extends Factory {
 		body = (Body) warehouseB.pull();
 		accessorie = (Accessories) warehouseA.pull();
 		
-		Car car = new Car(total, engine, body, accessorie);
-		warehouse.put(car);
+		detai = new Car(total, engine, body, accessorie);
+	}
+	
+	public void taskOnCreation(int count) {
+		needCars = count;
+//
+//		suppliersOn();
+//		on();
+//		creating();
+
+//		if needCars < 0
+//		needCars --;
+		
+		taskDone();
+	}
+	
+	void taskDone() {
+		dispatchEvent(this, Events.CAR_FACTORY, CarFactory_Events.TASK_DONE);
 	}
 }
