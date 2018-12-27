@@ -1,11 +1,16 @@
 package sample.model;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.util.Duration;
 import sample.model.data.GlobalData;
 import sample.model.events.Custom_EventObject;
 import sample.model.events.Dealer_Events;
 import sample.model.events.Events;
 import sample.model.events.Office_Events;
 import sample.model.events.observer.EventDispatcher;
+import sample.model.factories.detail.Car;
 import sample.model.factories.detail.Detail;
 import sample.model.factories.warehause.Warehouse;
 
@@ -14,72 +19,118 @@ import java.util.List;
 
 public class Dealers extends EventDispatcher {
 	
+	Timeline timeline;
 	List<Detail> warehouse = new ArrayList<>();
-	int wSize = 0;
-	int wOccupancy = 0;
+	private int size = 0;
+	private int occupancy = 0;
 	
-	boolean isWait = false;
-	int total = 0;
-	int speed = 0;
+	boolean isPause = false;
+	private int total = 0;
+	private int speed = 0;
 	
 	Warehouse warehouseCar;
 	Office office;
 	
 	public Dealers() {
-		wSize = 5;
+		size = 5;
+		speed = 500;
 		
 		warehouseCar = GlobalData.getInstance().warehouseCar;
 		office = GlobalData.getInstance().office;
+		
 		office.addEventListener(this::officeListener);
 		
-		System.out.println("Dealers.Dealers");
+		timeline = new Timeline();
+		timeline.setOnFinished(this::onUpdate);
+		timeline.setCycleCount(Timeline.INDEFINITE);
+		timeline.getKeyFrames().add(new KeyFrame(Duration.millis(speed), timeline.getOnFinished()));
 		
-		//requestRefill();
+		on();
 	}
-
+	
 	private void officeListener(Custom_EventObject e) {
 		switch ((Office_Events) e.getType()) {
 			case ANSWER_DONE:
-				System.out.println("Dealers.officeListener - ANSWER");
 				refill();
 				break;
 		}
 		
 	}
 	
+	private void onUpdate(ActionEvent e) {
+		sale();
+	}
+	
+	void on() {
+		timeline.play();
+	}
+	
 	void sale() {
-		warehouse.remove(0);
-		setWOccupancy(--wOccupancy);
+		if (occupancy > 0) {
+			setOccupancy(--occupancy);
+			Car soldCar = (Car) warehouse.remove(0);
+			System.out.println("car:" + soldCar);
+			System.out.println(
+					"[sale] " +
+					"carCLASS:" + soldCar.getClass().getSimpleName() + ", " +
+					"carCODE:" + soldCar.getCode() + ", " +
+					"carID:" + soldCar.getId()
+			);
+		} else {
+			requestRefill();
+		}
 	}
 	
 	void requestRefill() {
-		setWait(true);
-		office.dealerRequest(wSize);
+		pause();
+		office.dealerRequest(size);
+		FacadeModel.fireEvent(this, Events.DEALER, Dealer_Events.UPDATE);
 	}
 	
 	void refill() {
-		System.out.println("    Dealers.refill << ");
-		for (int i = 0; i < wSize; i++) {
-			setWOccupancy(++wOccupancy);
-			warehouse.add(warehouseCar.pull());
+		for (int i = 0; i < size; i++) {
+			total++;
+			setOccupancy(++occupancy);
+			
+			Car car = (Car) warehouseCar.pull();
+			warehouse.add(car);
+			System.out.println(i + " - - - " + warehouse.get(i));
+			System.out.println(".");
 		}
+		
+		resume();
+	}
+	
+	void pause() {
+		isPause = true;
+		timeline.stop();
+		FacadeModel.fireEvent(this, Events.DEALER, Dealer_Events.PAUSE);
+	}
+	
+	void resume() {
+		isPause = false;
+		timeline.play();
+		FacadeModel.fireEvent(this, Events.DEALER, Dealer_Events.RESUME);
 	}
 	
 //	void setSpeed() {
 //
 //	}
 	
-	public void setWOccupancy(int occupancy) {
-		this.wOccupancy = occupancy;
+	private void setOccupancy(int occupancy) {
+		this.occupancy = occupancy;
 		FacadeModel.fireEvent(this, Events.DEALER, Dealer_Events.UPDATE);
 	}
 	
-	public void setWait(boolean wait) {
-		if (wait) {
-			FacadeModel.fireEvent(this, Events.DEALER, Dealer_Events.UPDATE);
-		} else {
-			FacadeModel.fireEvent(this, Events.DEALER, Dealer_Events.UPDATE);
-		}
-		isWait = wait;
+	public int getOccupancy() {
+		return occupancy;
+	}
+	
+	public int getTotal() {
+		return total;
+	}
+	
+	public int getSize() {
+		return size;
 	}
 }

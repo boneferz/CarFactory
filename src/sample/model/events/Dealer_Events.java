@@ -2,9 +2,8 @@ package sample.model.events;
 
 public enum Dealer_Events {
 	UPDATE("update"),
-	WORK("work"),
-	WAIT("wait");
-	
+	PAUSE("pause"),
+	RESUME("resume");
 	
 	private String value;
 	

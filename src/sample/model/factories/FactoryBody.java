@@ -8,13 +8,12 @@ public class FactoryBody extends Factory {
 	
 	public FactoryBody(int index) {
 		super(index);
-		
-		switcher();
 	}
 	
 	@Override
 	protected void initWarehouse() {
 		super.warehouse = new WarehouseBody(index);
+		GlobalData.getInstance().factoryB = this;
 		GlobalData.getInstance().warehouseBody = warehouse;
 	}
 	

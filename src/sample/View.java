@@ -5,13 +5,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import sample.model.FacadeModel;
-import sample.model.events.Custom_EventObject;
-import sample.model.events.Events;
-import sample.model.events.Factory_Events;
-import sample.model.events.Warehouse_Events;
+import sample.model.events.*;
 import sample.model.factories.Factory;
 import sample.model.factories.warehause.Warehouse;
+import sample.view.DealerUI;
 import sample.view.FactoryUI;
+import sample.view.OfficeUI;
 import sample.view.WarehouseUI;
 
 import java.util.ArrayList;
@@ -21,108 +20,162 @@ public class View {
 	
 	@FXML
 	private Pane rootPane;
-
+	
 	@FXML
 	private ImageView switch_2;
-
+	
 	@FXML
 	private Label switchText_1;
-
+	
 	@FXML
 	private Label switchText_2;
-
+	
 	@FXML
 	private Label total_1;
-
+	
 	@FXML
 	private Label total_3;
-
+	
 	@FXML
 	private ImageView SpeedSlider_1;
-
+	
 	@FXML
 	private ImageView SpeedSlider_2;
-
+	
 	@FXML
 	private ImageView SpeedSlider_3;
-
+	
 	@FXML
 	private ImageView SpeedSlider_4;
-
+	
 	@FXML
 	private ImageView SpeedSlider_5;
-
+	
 	@FXML
 	private ImageView switch_4;
-
+	
 	@FXML
 	private Label switchText_4;
-
+	
 	@FXML
 	private ImageView switch_3;
-
+	
 	@FXML
 	private Label switchText_3;
-
+	
 	@FXML
 	private Label total_2;
-
+	
 	@FXML
 	private ImageView xBtn_2;
-
+	
 	@FXML
 	private Label warehouseTotal_1;
-
+	
 	@FXML
 	private ImageView xBtn_1;
-
+	
 	@FXML
 	private ImageView xBtn_3;
-
+	
 	@FXML
 	private Label total_4;
-
+	
 	@FXML
 	private ImageView xBtn_4;
-
+	
 	@FXML
 	private Label total_5;
-
+	
 	@FXML
 	private ImageView off_2;
-
+	
 	@FXML
 	private ImageView off_3;
-
+	
 	@FXML
 	private ImageView off_1;
-
+	
 	@FXML
 	private ImageView off_4;
-
+	
+	@FXML
+	private ImageView dealerIcon_4;
+	
+	@FXML
+	private ImageView dealerIcon_6;
+	
+	@FXML
+	private ImageView dealerIcon_5;
+	
+	@FXML
+	private ImageView dealerIcon_1;
+	
+	@FXML
+	private ImageView dealerIcon_3;
+	
+	@FXML
+	private ImageView dealerIcon_2;
+	
 	@FXML
 	private ImageView totalLine_1;
-
+	
 	@FXML
 	private ImageView totalLine_2;
-
+	
 	@FXML
 	private ImageView totalLine_3;
-
+	
 	@FXML
 	private ImageView totalLine_4;
-
+	
+	@FXML
+	private Label wTotal_1;
+	
+	@FXML
+	private Label wCount_2;
+	
+	@FXML
+	private Label wTotal_2;
+	
+	@FXML
+	private Label wCount_3;
+	
+	@FXML
+	private Label wTotal_3;
+	
+	@FXML
+	private Label wCount_4;
+	
+	@FXML
+	private Label wTotal_4;
+	
+	@FXML
+	private Label wCount_5;
+	
+	@FXML
+	private Label wTotal_5;
+	
+	@FXML
+	private Label wCount_1;
+	
 	@FXML
 	private ImageView switch_1;
-
+	
 	@FXML
 	private Label warehouseTotal_2;
-
+	
 	@FXML
 	private Label warehouseTotal_4;
-
+	
 	@FXML
 	private Label warehouseTotal_3;
+	
+	@FXML
+	private Label wCount_6;
+	
+	@FXML
+	private Label wTotal_6;
 	
 	public ImageView[] switchBtn = new ImageView[4];
 	public Label[] switchText = new Label[4];
@@ -137,6 +190,8 @@ public class View {
 	
 	public List<FactoryUI> factoryUI = new ArrayList<>();
 	public List<WarehouseUI> warehouseUI = new ArrayList<>();
+	public OfficeUI officeUI;
+	public DealerUI dealerUI;
 	
 	@FXML
 	void initialize() {
@@ -186,11 +241,13 @@ public class View {
 				new FactoryUI(rootPane,
 					switchBtn[i], switchText[i], offIcon[i], total[i], speedSlider[i]));
 		}
-		
 		for (int i = 0; i < 4; i++) {
 			warehouseUI.add(
 				new WarehouseUI(warehouseTotal[i], xBtn[i], totalLines[i]));
 		}
+		
+		officeUI = new OfficeUI();
+		dealerUI = new DealerUI(rootPane, dealerIcon_1, total_5, wTotal_1, wCount_1);
 	}
 	
 	public void setModel(FacadeModel model) {
@@ -204,13 +261,31 @@ public class View {
 	}
 	
 	private void officeListener(Custom_EventObject e) {
-		System.out.println("View.officeListener");
-		System.out.println(e.getType());
+		switch ((Office_Events) e.getType()) {
+			case ANSWER_DONE:
+				
+				break;
+			
+			case UPDATE:
+				
+				break;
+		}
 	}
 	
 	private void dealerListener(Custom_EventObject e) {
-		System.out.println("View.dealerListener");
-		System.out.println(e.getType());
+		switch ((Dealer_Events) e.getType()) {
+			case UPDATE:
+				dealerUI.updateTotal(e.getSource());
+				break;
+				
+			case PAUSE:
+				dealerUI.pause();
+				break;
+				
+			case RESUME:
+				dealerUI.resume();
+				break;
+		}
 	}
 	
 	void warehouseListener(Custom_EventObject event) {

@@ -8,13 +8,12 @@ public class FactoryEngine extends Factory {
 	
 	public FactoryEngine(int index) {
 		super(index);
-		
-		switcher();
 	}
 	
 	@Override
 	protected void initWarehouse() {
 		super.warehouse = new WarehouseEngine(index);
+		GlobalData.getInstance().factoryE = this;
 		GlobalData.getInstance().warehouseEngine = warehouse;
 	}
 	

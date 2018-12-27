@@ -196,32 +196,32 @@
                   <Image url="@_res/disable.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="476.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dealerIcon_4" layoutX="476.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="586.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dealerIcon_6" layoutX="586.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="530.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dealerIcon_5" layoutX="530.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="405.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dealerIcon_1" layoutX="405.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="515.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dealerIcon_3" layoutX="515.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/dealSell.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="459.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dealerIcon_2" layoutX="459.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/dealSell.png" />
                </image>
@@ -251,47 +251,47 @@
                   <Font name="Consolas Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="787.0" layoutY="425.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_1" layoutX="787.0" layoutY="425.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="685.0" layoutY="439.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_2" alignment="CENTER" layoutX="685.0" layoutY="439.0" text="99/99" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="787.0" layoutY="439.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_2" layoutX="787.0" layoutY="439.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="685.0" layoutY="454.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_3" alignment="CENTER" layoutX="685.0" layoutY="454.0" text="99/99" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="787.0" layoutY="454.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_3" layoutX="787.0" layoutY="454.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="685.0" layoutY="469.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_4" alignment="CENTER" layoutX="685.0" layoutY="469.0" text="99/99" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="787.0" layoutY="469.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_4" layoutX="787.0" layoutY="469.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="685.0" layoutY="485.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_5" alignment="CENTER" layoutX="685.0" layoutY="485.0" text="99/99" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="787.0" layoutY="485.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_5" layoutX="787.0" layoutY="485.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
@@ -316,7 +316,7 @@
                   <Font name="Consolas Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="685.0" layoutY="425.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_1" alignment="CENTER" layoutX="685.0" layoutY="425.0" text="99/99" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
@@ -367,6 +367,16 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+            </Label>
+            <Label fx:id="wCount_6" alignment="CENTER" layoutX="685.0" layoutY="501.0" text="99/99" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="wTotal_6" layoutX="787.0" layoutY="499.0" text="1233" textFill="#00000080">
+               <font>
+                  <Font name="Consolas Bold" size="15.0" />
+               </font>
             </Label>
          </children>
       </Pane>

@@ -31,8 +31,6 @@ public class FactoryCar extends Factory {
 		warehouseA.addEventListener(this::warehouseDetailsListener);
 		
 		GlobalData.getInstance().factoryCar = this;
-		
-		switcher();
 	}
 	
 	@Override
@@ -85,6 +83,10 @@ public class FactoryCar extends Factory {
 			createDetail();
 			super.warehousePut();
 			
+			System.out.println("needCars:" + needCars);
+			System.out.println("");
+			if (needCars == 0) taskDone();
+			
 			totalAddNew();
 			
 			if (isProblem) toFixProblem();
@@ -117,22 +119,16 @@ public class FactoryCar extends Factory {
 		accessorie = (Accessories) warehouseA.pull();
 		
 		detai = new Car(total, engine, body, accessorie);
+		--needCars;
 	}
 	
 	public void taskOnCreation(int count) {
 		needCars = count;
-//
-//		suppliersOn();
-//		on();
-//		creating();
-
-//		if needCars < 0
-//		needCars --;
-		
-		taskDone();
+		on();
 	}
 	
 	void taskDone() {
+//		off();
 		dispatchEvent(this, Events.CAR_FACTORY, CarFactory_Events.TASK_DONE);
 	}
 }
