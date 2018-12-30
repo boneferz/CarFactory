@@ -1,6 +1,6 @@
 package sample.model.factories;
 
-import jdk.nashorn.internal.objects.Global;
+import sample.model.ModelFacade;
 import sample.model.data.GlobalData;
 import sample.model.events.*;
 import sample.model.factories.detail.Accessories;
@@ -15,9 +15,19 @@ public class FactoryCar extends Factory {
 	Engine engine;
 	Body body;
 	Accessories accessorie;
-	Warehouse warehouseE, warehouseB, warehouseA;
+	Warehouse warehouseE;
+	Warehouse warehouseB;
+	Warehouse warehouseA;
 	
-	int needCars = 0;
+	// states (new)
+	private boolean work = false;
+	private boolean wait = false;
+	
+	// vars: get + set
+	private boolean canAdd = false; // pause()
+	private boolean details = false; // wait()
+	
+	private int needCars = 0;
 	
 	public FactoryCar(int index) {
 		super(index);
@@ -25,7 +35,6 @@ public class FactoryCar extends Factory {
 		warehouseE = GlobalData.getInstance().warehouseEngine;
 		warehouseB = GlobalData.getInstance().warehouseBody;
 		warehouseA = GlobalData.getInstance().warehouseAccessories;
-		
 		warehouseE.addEventListener(this::warehouseDetailsListener);
 		warehouseB.addEventListener(this::warehouseDetailsListener);
 		warehouseA.addEventListener(this::warehouseDetailsListener);
@@ -40,25 +49,16 @@ public class FactoryCar extends Factory {
 	}
 	
 	@Override
-	public void on() {
-		super.on();
-		
-		if (!isDetailsAvailability()) {
-			if (!isPaused) pause();
-		}
-	}
-	
-	@Override
-	public void warehouseListener(Custom_EventObject e) {
-		switch ((Warehouse_Events) e.getType()) {
+	public void warehouseListener(EventObject e) { // pause()
+		switch ((Event_Warehouse) e.getType()) {
 			case RELEASED:
 				if (isDetailsAvailability() && isCanAddNextDetail()) {
-					if (isPaused) {
-						if (isEnabled) {
+					if (paused) {
+						if (enable) {
 							resume();
 						}
 						else {
-							isPaused = false;
+							paused = false;
 						}
 					}
 				}
@@ -66,50 +66,55 @@ public class FactoryCar extends Factory {
 		}
 	}
 	
-	public void warehouseDetailsListener(Custom_EventObject e) {
-		switch ((Warehouse_Events) e.getType()) {
+	public void warehouseDetailsListener(EventObject e) { // wait()
+		switch ((Event_Warehouse) e.getType()) {
 			case ADDED:
 				if (isDetailsAvailability() && isCanAddNextDetail()) {
-					if (isPaused) resume();
+					if (paused) resume(); // pause???
 				}
 				break;
 		}
 	}
 	
 	@Override
+	void on() {
+		enable = true;
+		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.ENABLE);
+//		if (paused) {
+//			ModelFacade.fireEvent(this, Event.FACTORIES, Event_Factory.PAUSE);
+//		} else {
+//			timeline.play();
+//		}
+	}
+	@Override
+	void off() {
+		enable = false;
+		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.DISABLE);
+//		if (!problem) {
+//			timeline.stop();
+//			if (paused) ModelFacade.fireEvent(this, Event.FACTORIES, Event_Factory.RESUME);
+//		}
+	}
+	
+	@Override
 	public void creating() {
 		if (isDetailsAvailability() && isCanAddNextDetail()) {
-			
+			// add detail
 			createDetail();
 			super.warehousePut();
-			
-			System.out.println("needCars:" + needCars);
-			System.out.println("");
-			if (needCars == 0) taskDone();
-			
 			totalAddNew();
+			if (problem) toFixProblem();
 			
-			if (isProblem) toFixProblem();
-			
-			if (!isCanAddNextDetail()) pause();
+			// task work
+			--needCars;
+			if (needCars == 0) {
+				taskDone();
+			} else {
+				if (!isCanAddNextDetail()) pause();
+			}
 		} else {
 			pause();
 		}
-	}
-	
-	boolean isCanAddNextDetail() {
-		if (warehouse.getOccupancy() + 1 <= warehouse.getSize())
-			return true;
-		return false;
-	}
-	
-	boolean isDetailsAvailability() {
-		if (warehouseE.getOccupancy() > 0
-			&& warehouseB.getOccupancy() > 0
-			&& warehouseA.getOccupancy() > 0) {
-			return true;
-		}
-		return false;
 	}
 	
 	@Override
@@ -119,16 +124,88 @@ public class FactoryCar extends Factory {
 		accessorie = (Accessories) warehouseA.pull();
 		
 		detai = new Car(total, engine, body, accessorie);
-		--needCars;
 	}
+	
+	boolean isCanAddNextDetail() { // get + check + set
+		if (warehouse.getOccupancy() + 1 <= warehouse.getSize()) {
+			if (!canAdd)
+				setCanAddNextDetail(true);
+		} else {
+			if (canAdd)
+				setCanAddNextDetail(false);
+		}
+		
+		return canAdd;
+	}
+	
+	public void setCanAddNextDetail(boolean value) { // set + event
+		if (value) {
+			canAdd = true;
+//			ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.WAIT_DETAILS_ON);
+		} else {
+			canAdd = false;
+//			ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.WAIT_DETAILS_OFF);
+		}
+	}
+	
+	boolean isDetailsAvailability() {
+		if (warehouseE.getOccupancy() > 0
+				&& warehouseB.getOccupancy() > 0
+				&& warehouseA.getOccupancy() > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+//	void enableDatailWait() {
+//		if (!waitDetail) {
+//			waitDetail = true;
+//			ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.WAIT_DETAILS_ON);
+//		}
+//	}
+//	void disableDatailWait() {
+//		if (waitDetail) {
+//			waitDetail = false;
+//			ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.WAIT_DETAILS_OFF);
+//		}
+//	}
 	
 	public void taskOnCreation(int count) {
 		needCars = count;
-		on();
 	}
 	
 	void taskDone() {
-//		off();
-		dispatchEvent(this, Events.CAR_FACTORY, CarFactory_Events.TASK_DONE);
+		dispatchEvent(this, Event.FACTORY_CAR, Event_FactoryCar.TASK_DONE);
 	}
+	
+	// --------------------------------------
+	
+	void enable() {
+	
+	}
+	void disable() {
+	
+	}
+	
+	void problem() {
+	
+	}
+	void fixProblem() {
+	
+	}
+	
+	void onWork() {
+	
+	}
+	void offWork() {
+	
+	}
+	
+	void onWait() {
+	
+	}
+	void offWait() {
+	
+	}
+	
 }

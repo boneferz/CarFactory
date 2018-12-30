@@ -1,6 +1,6 @@
 package sample.model.events.observer;
 
-import sample.model.events.Custom_EventObject;
+import sample.model.events.EventObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ public abstract class EventDispatcherTyped {
 		map.put(event, listener);
 	}
 	public static void fireEvent(Object source, Enum event, Enum eventType) {
-		Custom_EventObject eventObject = new Custom_EventObject(source, event, eventType);
+		EventObject eventObject = new EventObject(source, event, eventType);
 		
 		for (Enum eventKey : map.keySet()) {
 			if (eventObject.getEvent().equals(eventKey))

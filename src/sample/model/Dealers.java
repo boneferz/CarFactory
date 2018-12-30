@@ -5,10 +5,10 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.util.Duration;
 import sample.model.data.GlobalData;
-import sample.model.events.Custom_EventObject;
-import sample.model.events.Dealer_Events;
-import sample.model.events.Events;
-import sample.model.events.Office_Events;
+import sample.model.events.EventObject;
+import sample.model.events.Event_Dealer;
+import sample.model.events.Event;
+import sample.model.events.Event_Office;
 import sample.model.events.observer.EventDispatcher;
 import sample.model.factories.detail.Car;
 import sample.model.factories.detail.Detail;
@@ -48,8 +48,8 @@ public class Dealers extends EventDispatcher {
 		on();
 	}
 	
-	private void officeListener(Custom_EventObject e) {
-		switch ((Office_Events) e.getType()) {
+	private void officeListener(EventObject e) {
+		switch ((Event_Office) e.getType()) {
 			case ANSWER_DONE:
 				refill();
 				break;
@@ -69,12 +69,11 @@ public class Dealers extends EventDispatcher {
 		if (occupancy > 0) {
 			setOccupancy(--occupancy);
 			Car soldCar = (Car) warehouse.remove(0);
-			System.out.println("car:" + soldCar);
 			System.out.println(
 					"[sale] " +
-					"carCLASS:" + soldCar.getClass().getSimpleName() + ", " +
-					"carCODE:" + soldCar.getCode() + ", " +
-					"carID:" + soldCar.getId()
+					"carID: " + soldCar.getId() + ", " +
+					"carCLASS: " + soldCar.getClass().getSimpleName() + ", " +
+					"carCODE: " + soldCar.getCode()
 			);
 		} else {
 			requestRefill();
@@ -82,20 +81,22 @@ public class Dealers extends EventDispatcher {
 	}
 	
 	void requestRefill() {
+		System.out.println(" request");
+		
 		pause();
 		office.dealerRequest(size);
-		FacadeModel.fireEvent(this, Events.DEALER, Dealer_Events.UPDATE);
+		ModelFacade.fireEvent(this, Event.DEALER, Event_Dealer.UPDATE);
 	}
 	
 	void refill() {
+		System.out.println(" answer");
+		
 		for (int i = 0; i < size; i++) {
 			total++;
 			setOccupancy(++occupancy);
 			
 			Car car = (Car) warehouseCar.pull();
 			warehouse.add(car);
-			System.out.println(i + " - - - " + warehouse.get(i));
-			System.out.println(".");
 		}
 		
 		resume();
@@ -104,13 +105,13 @@ public class Dealers extends EventDispatcher {
 	void pause() {
 		isPause = true;
 		timeline.stop();
-		FacadeModel.fireEvent(this, Events.DEALER, Dealer_Events.PAUSE);
+		ModelFacade.fireEvent(this, Event.DEALER, Event_Dealer.PAUSE);
 	}
 	
 	void resume() {
 		isPause = false;
 		timeline.play();
-		FacadeModel.fireEvent(this, Events.DEALER, Dealer_Events.RESUME);
+		ModelFacade.fireEvent(this, Event.DEALER, Event_Dealer.RESUME);
 	}
 	
 //	void setSpeed() {
@@ -119,7 +120,7 @@ public class Dealers extends EventDispatcher {
 	
 	private void setOccupancy(int occupancy) {
 		this.occupancy = occupancy;
-		FacadeModel.fireEvent(this, Events.DEALER, Dealer_Events.UPDATE);
+		ModelFacade.fireEvent(this, Event.DEALER, Event_Dealer.UPDATE);
 	}
 	
 	public int getOccupancy() {

@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import sample.model.FacadeModel;
+import sample.model.ModelFacade;
 import sample.model.events.*;
 import sample.model.factories.Factory;
 import sample.model.factories.warehause.Warehouse;
@@ -186,7 +186,7 @@ public class View {
 	public ImageView[] totalLines = new ImageView[4];
 	public ImageView[] speedSlider = new ImageView[4];
 	
-	FacadeModel model;
+	ModelFacade model;
 	
 	public List<FactoryUI> factoryUI = new ArrayList<>();
 	public List<WarehouseUI> warehouseUI = new ArrayList<>();
@@ -250,18 +250,46 @@ public class View {
 		dealerUI = new DealerUI(rootPane, dealerIcon_1, total_5, wTotal_1, wCount_1);
 	}
 	
-	public void setModel(FacadeModel model) {
+	public void setModel(ModelFacade model) {
 		this.model = model;
 
-		model.addEventListener(Events.FACTORY, this::supplierListener);
-		model.addEventListener(Events.WAREHOUSE, this::warehouseListener);
+		model.addEventListener(Event.FACTORIES, this::factoriesListener);
+		model.addEventListener(Event.WAREHOUSE, this::warehouseListener);
 		
-		model.addEventListener(Events.DEALER, this::dealerListener);
-		model.addEventListener(Events.OFFICE, this::officeListener);
+//		model.addEventListener(Event.DEALER, this::dealerListener);
+//		model.addEventListener(Event.OFFICE, this::officeListener);
+		model.addEventListener(Event.FACTORY_CAR, this::factoryCarListener);
 	}
 	
-	private void officeListener(Custom_EventObject e) {
-		switch ((Office_Events) e.getType()) {
+	private void factoryCarListener(EventObject e) {
+		int index = ((Factory) (e.getSource())).index;
+		
+		switch ((Event_FactoryCar) e.getType()) {
+			case ENABLE:
+				factoryUI.get(index).enable();
+				break;
+			case DISABLE:
+				factoryUI.get(index).disable();
+				break;
+				
+			case WAIT_ON:
+				factoryUI.get(index).waitOn();
+				break;
+			case WAIT_OFF:
+				factoryUI.get(index).waitOff();
+				break;
+				
+			case WORK_ON:
+				factoryUI.get(index).workOn();
+				break;
+			case WORK_OFF:
+				factoryUI.get(index).workOff();
+				break;
+		}
+	}
+	
+	/*private void officeListener(EventObject e) {
+		switch ((Event_Office) e.getType()) {
 			case ANSWER_DONE:
 				
 				break;
@@ -270,10 +298,10 @@ public class View {
 				
 				break;
 		}
-	}
+	}*/
 	
-	private void dealerListener(Custom_EventObject e) {
-		switch ((Dealer_Events) e.getType()) {
+	/*private void dealerListener(EventObject e) {
+		switch ((Event_Dealer) e.getType()) {
 			case UPDATE:
 				dealerUI.updateTotal(e.getSource());
 				break;
@@ -286,24 +314,24 @@ public class View {
 				dealerUI.resume();
 				break;
 		}
-	}
+	}*/
 	
-	void warehouseListener(Custom_EventObject event) {
+	void warehouseListener(EventObject event) {
 		int index = ((Warehouse) event.getSource()).getIndex();
 		int total = ((Warehouse) event.getSource()).getOccupancy();
 		
-		switch ((Warehouse_Events) event.getType()) {
+		switch ((Event_Warehouse) event.getType()) {
 			case UPDATE:
 				warehouseUI.get(index).totalUpdate(total);
 				break;
 		}
 	}
 	
-	void supplierListener(Custom_EventObject event) {
+	void factoriesListener(EventObject event) {
 		int index = ((Factory) event.getSource()).index;
 		int total = ((Factory) event.getSource()).total;
 		
-		switch ((Factory_Events) event.getType()) {
+		switch ((Event_Factory) event.getType()) {
 			case SWITCH_ON:
 				factoryUI.get(index).on();
 				break;

@@ -28,10 +28,9 @@ public class Office extends EventDispatcher {
 		factoryCar.addEventListener(this::factoryCarListener);
 	}
 	
-	private void factoryCarListener(Custom_EventObject e) {
-		switch ((CarFactory_Events) e.getType()) {
+	private void factoryCarListener(EventObject e) {
+		switch ((Event_FactoryCar) e.getType()) {
 			case TASK_DONE:
-				System.out.println(" TASK_DONE");
 				taskDone();
 				break;
 		}
@@ -39,23 +38,16 @@ public class Office extends EventDispatcher {
 	
 	public void dealerRequest(int count) {
 		setTasks(++tasks);
-		
-		factoryEngine.on();
-		factoryBody.on();
-		factoryAccessorie.on();
-		
 		factoryCar.taskOnCreation(count);
 	}
 	
 	private void taskDone() {
 		setTasks(--tasks);
-		dispatchEvent(this, Events.OFFICE, Office_Events.ANSWER_DONE);
+		dispatchEvent(this, Event.OFFICE, Event_Office.ANSWER_DONE);
 	}
 	
 	public void setTasks(int tasks) {
 		this.tasks = tasks;
-		FacadeModel.fireEvent(this, Events.OFFICE, Office_Events.UPDATE);
+		ModelFacade.fireEvent(this, Event.OFFICE, Event_Office.UPDATE);
 	}
-	
-	
 }

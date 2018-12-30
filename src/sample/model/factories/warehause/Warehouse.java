@@ -1,9 +1,9 @@
 package sample.model.factories.warehause;
 
-import sample.model.FacadeModel;
+import sample.model.ModelFacade;
 import sample.model.data.Config;
-import sample.model.events.Events;
-import sample.model.events.Warehouse_Events;
+import sample.model.events.Event;
+import sample.model.events.Event_Warehouse;
 import sample.model.events.observer.EventDispatcher;
 import sample.model.factories.detail.Detail;
 import java.util.ArrayList;
@@ -24,13 +24,13 @@ public abstract class Warehouse extends EventDispatcher {
 	public void put(Detail detail) {
 		setOccupancy(++occupancy);
 		warehouseArr.add(detail);
-		dispatchEvent(this, Events.WAREHOUSE, Warehouse_Events.ADDED);
+		dispatchEvent(this, Event.WAREHOUSE, Event_Warehouse.ADDED);
 	}
 	
 	public Detail pull() {
 		if (occupancy > 0) {
 			setOccupancy(--occupancy);
-			dispatchEvent(this, Events.WAREHOUSE, Warehouse_Events.RELEASED);
+			dispatchEvent(this, Event.WAREHOUSE, Event_Warehouse.RELEASED);
 			return warehouseArr.remove(0);
 		}
 		return null;
@@ -38,13 +38,13 @@ public abstract class Warehouse extends EventDispatcher {
 	
 	void setOccupancy(int i) {
 		occupancy = i;
-		FacadeModel.fireEvent(this, Events.WAREHOUSE, Warehouse_Events.UPDATE);
+		ModelFacade.fireEvent(this, Event.WAREHOUSE, Event_Warehouse.UPDATE);
 	}
 	
 	public void clear() {
 		setOccupancy(0);
 		warehouseArr.clear();
-		dispatchEvent(this, Events.WAREHOUSE, Warehouse_Events.RELEASED);
+		dispatchEvent(this, Event.WAREHOUSE, Event_Warehouse.RELEASED);
 		
 	}
 	

@@ -20,11 +20,17 @@ public class FactoryUI {
 	Image runningImg = new Image("sample/_res/runing.png");
 	ImageView running = new ImageView(runningImg);
 	
-	Image waitImg = new Image("sample/_res/wait.png");
-	ImageView wait = new ImageView(waitImg);
+	Image pauseImg = new Image("sample/_res/pause.png");
+	ImageView pause = new ImageView(pauseImg);
 	
 	Image problemImg = new Image("sample/_res/problem.png");
 	ImageView problem = new ImageView(problemImg);
+	
+	Image loadingImg = new Image("sample/_res/loading.png");
+	ImageView loading = new ImageView(loadingImg);
+
+	Image waitImg = new Image("sample/_res/wait.png");
+	ImageView wait = new ImageView(waitImg);
 	
 	public ImageView switcherOff;
 	ImageView offIcon;
@@ -49,73 +55,74 @@ public class FactoryUI {
 		timeline.setOnFinished(this::onUpdate);
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		
-		timeline.getKeyFrames().add(new KeyFrame(
-				Duration.millis(50), timeline.getOnFinished()));
 		
-		init();
-	}
-	
-	private void init() {
-		totalText.setStyle("-fx-text-fill: gainsboro");
-		switchText.setText("off");
-		totalUpdate(0);
+		// 10, 5
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.millis(40), timeline.getOnFinished()));
+		timeline.play();
 		
 		speedSliderStartX = (int) speedSlider.getLayoutX();
+		
+		totalText.setStyle("-fx-text-fill: gainsboro");
+		switchText.setText("off");
+		totalText.setText(String.valueOf("0"));
+		
+		switcherOn.setX(switcherOff.getLayoutX());
+		switcherOn.setY(switcherOff.getLayoutY());
+		switcherOn.setDisable(true);
+		
+		running.setX(offIcon.getLayoutX());
+		running.setY(offIcon.getLayoutY());
+		
+		pause.setX(offIcon.getLayoutX());
+		pause.setY(offIcon.getLayoutY());
+		
+		problem.setX(offIcon.getLayoutX());
+		problem.setY(offIcon.getLayoutY());
+		
+		wait.setX(offIcon.getLayoutX() + 1);
+		wait.setY(offIcon.getLayoutY() + 1);
+		
+		loading.setX(offIcon.getLayoutX() + 1);
+		loading.setY(offIcon.getLayoutY() + 1);
 	}
 	
 	private void onUpdate(ActionEvent e) {
-		running.setRotate(running.getRotate() + 5);
+		running.setRotate(running.getRotate() - 6);
+		loading.setRotate(loading.getRotate() - 2);
 	}
 	
 	public void totalUpdate(int total) {
 		totalText.setText(String.valueOf(total));
 	}
 	
+	// on / off
 	public void on() {
 		switchText.setText("on");
-		
 		parent.getChildren().add(switcherOn);
-		
-		switcherOn.setX(switcherOff.getLayoutX());
-		switcherOn.setY(switcherOff.getLayoutY());
-		switcherOn.setDisable(true);
-		
 		parent.getChildren().add(running);
-		running.setX(offIcon.getLayoutX());
-		running.setY(offIcon.getLayoutY());
-		
-		timeline.play();
 		totalText.setStyle("-fx-text-fill: black");
 	}
 	public void off() {
 		switchText.setText("off");
-		
 		parent.getChildren().remove(switcherOn);
 		parent.getChildren().remove(running);
-		
-		timeline.stop();
 		totalText.setStyle("-fx-text-fill: gainsboro");
 	}
 	
+	// pause
 	public void pause() {
-		parent.getChildren().add(wait);
-		
-		wait.setX(offIcon.getLayoutX());
-		wait.setY(offIcon.getLayoutY());
-		
+		parent.getChildren().add(pause);
 		totalText.setStyle("-fx-text-fill: orange");
 	}
 	public void resume() {
-		parent.getChildren().remove(wait);
+		parent.getChildren().remove(pause);
 		totalText.setStyle("-fx-text-fill: black");
 	}
 	
+	// problem
 	public void problem() {
 		parent.getChildren().add(problem);
-		
-		problem.setX(offIcon.getLayoutX());
-		problem.setY(offIcon.getLayoutY());
-		
 		totalText.setStyle("-fx-text-fill: crimson");
 	}
 	public void problemFixed() {
@@ -123,13 +130,45 @@ public class FactoryUI {
 		totalText.setStyle("-fx-text-fill: black");
 	}
 	
+	// SpeedSlider
 	public void moveSpeedSlider(Object object) {
 		Factory supplier = (Factory) object;
 		speedSlider.setX(supplier.sliderPosition - speedSliderStartX);
 	}
-	
 	public void initSpeedSlider(Object source) {
 		Factory supplier = (Factory) source;
 		speedSlider.setX(supplier.initSliderPosition);
+	}
+	
+	// factoryCar ---------------------------------------------
+	
+	//  on/off
+	public void enable() {
+		switchText.setText("on");
+		parent.getChildren().add(loading);
+		parent.getChildren().add(switcherOn);
+		totalText.setStyle("-fx-text-fill: black");
+	}
+	public void disable() {
+		switchText.setText("off");
+		parent.getChildren().remove(loading);
+		parent.getChildren().remove(switcherOn);
+		totalText.setStyle("-fx-text-fill: gainsboro");
+	}
+	
+	// wait - Details
+	public void waitOn() {
+		parent.getChildren().add(wait);
+	}
+	public void waitOff() {
+		parent.getChildren().remove(wait);
+	}
+	
+	// wait - Task
+	public void workOn() {
+		parent.getChildren().add(running);
+	}
+	public void workOff() {
+		parent.getChildren().remove(running);
 	}
 }

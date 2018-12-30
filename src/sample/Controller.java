@@ -1,19 +1,18 @@
 package sample;
 
 import javafx.scene.input.MouseEvent;
-import sample.model.FacadeModel;
+import sample.model.ModelFacade;
 
 public class Controller {
 	
 	View view;
-	FacadeModel model;
+	ModelFacade model;
 	
-	public Controller(View view, FacadeModel model) {
+	public Controller(View view, ModelFacade model) {
 		this.view = view;
 		this.model = model;
 		
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_CLICKED, this::clickListener);
-		
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_PRESSED, this::pressListener);
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_DRAGGED, this::dragListener);
 		view.getRootPane().addEventHandler(MouseEvent.MOUSE_RELEASED, this::releaseListener);

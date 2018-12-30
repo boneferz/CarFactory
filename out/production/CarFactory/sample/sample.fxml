@@ -251,47 +251,47 @@
                   <Font name="Consolas Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="wTotal_1" layoutX="787.0" layoutY="425.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_1" layoutX="775.0" layoutY="425.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="wCount_2" alignment="CENTER" layoutX="685.0" layoutY="439.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_2" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="710.0" layoutY="439.0" text="99/99" textAlignment="CENTER" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="wTotal_2" layoutX="787.0" layoutY="439.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_2" layoutX="775.0" layoutY="439.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="wCount_3" alignment="CENTER" layoutX="685.0" layoutY="454.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_3" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="710.0" layoutY="454.0" text="99/99" textAlignment="CENTER" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="wTotal_3" layoutX="787.0" layoutY="454.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_3" layoutX="775.0" layoutY="454.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="wCount_4" alignment="CENTER" layoutX="685.0" layoutY="469.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_4" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="710.0" layoutY="469.0" text="99/99" textAlignment="CENTER" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="wTotal_4" layoutX="787.0" layoutY="469.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_4" layoutX="775.0" layoutY="469.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="wCount_5" alignment="CENTER" layoutX="685.0" layoutY="485.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_5" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="710.0" layoutY="485.0" text="99/99" textAlignment="CENTER" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="wTotal_5" layoutX="787.0" layoutY="485.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_5" layoutX="775.0" layoutY="485.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
@@ -316,7 +316,7 @@
                   <Font name="Consolas Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="wCount_1" alignment="CENTER" layoutX="685.0" layoutY="425.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_1" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="710.0" layoutY="425.0" text="99/99" textAlignment="CENTER" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
@@ -368,16 +368,17 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="wCount_6" alignment="CENTER" layoutX="685.0" layoutY="501.0" text="99/99" textFill="#00000080">
+            <Label fx:id="wCount_6" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="710.0" layoutY="501.0" text="99/99" textAlignment="CENTER" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="wTotal_6" layoutX="787.0" layoutY="499.0" text="1233" textFill="#00000080">
+            <Label fx:id="wTotal_6" layoutX="775.0" layoutY="501.0" text="1233" textFill="#00000080">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
+            <Pane layoutX="660.0" layoutY="5.0" opacity="0.9" prefHeight="366.0" prefWidth="191.0" style="-fx-background-color: white;" />
          </children>
       </Pane>
    </children>

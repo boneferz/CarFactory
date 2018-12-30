@@ -5,11 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.model.FacadeModel;
+import sample.model.ModelFacade;
 
 public class Main extends Application {
 	
-	private FacadeModel model;
+	private ModelFacade model;
 	private View view;
 	private Controller controller;
 	
@@ -33,7 +33,7 @@ public class Main extends Application {
 	    primaryStage.show();
 	    
 	    // mvc
-	    model = new FacadeModel();
+	    model = new ModelFacade();
 	    view = UIview.getController();
 	    controller = new Controller(view, model);
 	

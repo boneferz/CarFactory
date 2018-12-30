@@ -1,6 +1,6 @@
 package sample.model.events.observer;
 
-import sample.model.events.Custom_EventObject;
+import sample.model.events.EventObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public abstract class EventDispatcher {
 	}
 	
 	public void dispatchEvent(Object source, Enum event,  Enum eventType) {
-		Custom_EventObject eventObject = new Custom_EventObject(source, event, eventType);
+		EventObject eventObject = new EventObject(source, event, eventType);
 		for (EventListener l : listeners) {
 			l.handle(eventObject);
 		}

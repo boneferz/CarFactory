@@ -21,7 +21,7 @@ public class Model {
 		factory.add(new FactoryAccessorie(2));
 		factory.add(new FactoryCar(3));
 		
-		office = new Office();
-		dealer = new Dealers();
+		//office = new Office();
+		//dealer = new Dealers();
 	}
 }
