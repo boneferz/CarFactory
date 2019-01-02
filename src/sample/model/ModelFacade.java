@@ -14,9 +14,6 @@ public class ModelFacade extends EventDispatcherTyped {
 	public void engineSupplierSwitcher(int i) {
 		model.factory.get(i).switcher();
 	}
-	public void engineWarehouseXBtn(int i) {
-		model.factory.get(i).warehouse.clear();
-	}
 	public void engineSupplierSpeedSliderPressed(int i, MouseEvent e) {
 		model.factory.get(i).mousePressed(e);
 	}
@@ -27,6 +24,9 @@ public class ModelFacade extends EventDispatcherTyped {
 		model.factory.get(i).mouseRealised(e);
 	}
 	public void engineWarehousePull(int i) {
-		model.factory.get(i).warehouse.pull();
+		model.factory.get(i).pullDetail();
+	}
+	public void engineWarehouseXBtn(int i) {
+		model.factory.get(i).clearWarehouse();
 	}
 }

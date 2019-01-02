@@ -1,13 +1,17 @@
-package base.model.factories;
+package sample.model.factories;
 
-import base.model.ModelFacade;
-import base.model.data.GlobalData;
-import base.model.factories.detail.Accessories;
-import base.model.factories.detail.Body;
-import base.model.factories.detail.Car;
-import base.model.factories.detail.Engine;
-import base.model.factories.warehause.Warehouse;
-import base.model.factories.warehause.WarehouseCar;
+import sample.model.ModelFacade;
+import sample.model.data.GlobalData;
+import sample.model.events.Event;
+import sample.model.events.EventObject;
+import sample.model.events.Event_FactoryCar;
+import sample.model.events.Event_Warehouse;
+import sample.model.factories.detail.Accessories;
+import sample.model.factories.detail.Body;
+import sample.model.factories.detail.Car;
+import sample.model.factories.detail.Engine;
+import sample.model.factories.warehause.Warehouse;
+import sample.model.factories.warehause.WarehouseCar;
 
 public class FactoryCar extends Factory {
 	
@@ -26,6 +30,7 @@ public class FactoryCar extends Factory {
 	private boolean details = false; // wait()
 	
 	private int needCars = 0;
+	private int needCarsTemp = 0;
 	
 	public FactoryCar(int index) {
 		super(index);
@@ -215,6 +220,7 @@ public class FactoryCar extends Factory {
 	// task
 	public void taskOnCreation(int count) {
 		needCars = count;
+		needCarsTemp = count;
 		
 		setWork(true);
 		if (enable) {
@@ -253,6 +259,22 @@ public class FactoryCar extends Factory {
 	void waitOff() {
 		timeline.play();
 		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.WAIT_OFF);
+	}
+	
+	@Override
+	public void pullDetail() {
+		if (isWork() && needCars < needCarsTemp) {
+			super.pullDetail();
+			needCars++;
+		}
+	}
+	
+	@Override
+	public void clearWarehouse() {
+		if (isWork()) {
+			super.clearWarehouse();
+			needCars = needCarsTemp;
+		}
 	}
 	
 	///////////////////////////////////////////////////////////////////////////

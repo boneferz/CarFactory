@@ -1,11 +1,11 @@
-package base;
+package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import base.model.ModelFacade;
+import sample.model.ModelFacade;
 
 public class Main extends Application {
 	

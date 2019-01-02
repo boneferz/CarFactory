@@ -216,7 +216,7 @@ public abstract class Factory extends EventDispatcher {
 	
 	public void changeSpeed() {
 		speed = (int) ((moveDistance) * ratio) + speedMin;
-		System.out.println(" > new speed: " + speed);
+//		System.out.println(" > new speed: " + speed);
 		
 		if (timeline.getStatus().equals(Animation.Status.RUNNING)) {
 			timeline.stop();
@@ -232,5 +232,13 @@ public abstract class Factory extends EventDispatcher {
 	private void setSpeedSliderStartPosition() {
 		initSliderPosition = (int) (((speed - speedMin) / ratio));
 		ModelFacade.fireEvent(this, Event.FACTORIES, Event_Factory.INIT_SPEED_SLIDER);
+	}
+	
+	public void pullDetail() {
+		warehouse.pull();
+	}
+	
+	public void clearWarehouse() {
+		warehouse.clear();
 	}
 }
