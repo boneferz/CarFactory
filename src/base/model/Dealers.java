@@ -1,18 +1,18 @@
-package sample.model;
+package base.model;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.util.Duration;
-import sample.model.data.GlobalData;
-import sample.model.events.EventObject;
-import sample.model.events.Event_Dealer;
-import sample.model.events.Event;
-import sample.model.events.Event_Office;
-import sample.model.events.observer.EventDispatcher;
-import sample.model.factories.detail.Car;
-import sample.model.factories.detail.Detail;
-import sample.model.factories.warehause.Warehouse;
+import base.model.data.GlobalData;
+import base.model.events.EventObject;
+import base.model.events.Event_Dealer;
+import base.model.events.Event;
+import base.model.events.Event_Office;
+import base.model.events.observer.EventDispatcher;
+import base.model.factories.detail.Car;
+import base.model.factories.detail.Detail;
+import base.model.factories.warehause.Warehouse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,18 @@ public class Dealers extends EventDispatcher {
 	private void officeListener(EventObject e) {
 		switch ((Event_Office) e.getType()) {
 			case ANSWER_DONE:
-				refill();
+				
+				System.out.println("---ANSWER_DONE >> DELAY");
+				
+				Timeline delay = new Timeline();
+				delay.setOnFinished(event -> {
+					System.out.println("---ANSWER_DONE >> stop");
+					refill();
+				});
+				delay.setCycleCount(5);
+				delay.getKeyFrames().add(new KeyFrame(Duration.millis(500)));
+				delay.play();
+				
 				break;
 		}
 		
@@ -81,7 +92,9 @@ public class Dealers extends EventDispatcher {
 	}
 	
 	void requestRefill() {
-		System.out.println(" request");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("█ request ->");
 		
 		pause();
 		office.dealerRequest(size);
@@ -89,7 +102,7 @@ public class Dealers extends EventDispatcher {
 	}
 	
 	void refill() {
-		System.out.println(" answer");
+		System.out.println("█ answer <-");
 		
 		for (int i = 0; i < size; i++) {
 			total++;

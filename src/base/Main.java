@@ -1,11 +1,11 @@
-package sample;
+package base;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.model.ModelFacade;
+import base.model.ModelFacade;
 
 public class Main extends Application {
 	
@@ -39,6 +39,6 @@ public class Main extends Application {
 	
 	    view.setModel(model);
 	    model.createModel();
+	    
     }
-	
 }

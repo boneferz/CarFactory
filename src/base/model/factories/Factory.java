@@ -40,7 +40,7 @@ public abstract class Factory extends EventDispatcher {
 	int moveDistance;
 	
 	public Warehouse warehouse;
-	Detail detai;
+	Detail detail;
 	
 	public Factory(int index) {
 		this.index = index;
@@ -87,12 +87,14 @@ public abstract class Factory extends EventDispatcher {
 	
 	public void pause() {
 		paused = true;
+		
 		timeline.stop();
 		ModelFacade.fireEvent(this, Event.FACTORIES, Event_Factory.PAUSE);
 	}
 	
 	public void resume() {
 		paused = false;
+		
 		timeline.play();
 		ModelFacade.fireEvent(this, Event.FACTORIES, Event_Factory.RESUME);
 	}
@@ -134,7 +136,6 @@ public abstract class Factory extends EventDispatcher {
 		creating();
 	}
 	
-	protected abstract void createDetail();
 	public void creating() {
 		createDetail();
 		warehousePut();
@@ -146,9 +147,10 @@ public abstract class Factory extends EventDispatcher {
 			if (!paused) pause();
 		}
 	}
+	protected abstract void createDetail();
 	
 	void warehousePut() {
-		warehouse.put(detai);
+		warehouse.put(detail);
 	}
 	
 	boolean isCanAddNextDetail() {
@@ -164,18 +166,15 @@ public abstract class Factory extends EventDispatcher {
 	
 	public void tryProblem() {
 		if (Math.random() * 100 < problemChance) {
+			
 			problem = true;
 			timeline.stop();
 			ModelFacade.fireEvent(this, Event.FACTORIES, Event_Factory.PROBLEM);
 			
 			Timeline delay = new Timeline(new KeyFrame(Duration.millis(problemDelay)));
-			delay.setOnFinished(this::problemDelay);
+			delay.setOnFinished(e -> timeline.play());
 			delay.play();
 		}
-	}
-	
-	void problemDelay(ActionEvent e) {
-		timeline.play();
 	}
 	
 	void toFixProblem() {

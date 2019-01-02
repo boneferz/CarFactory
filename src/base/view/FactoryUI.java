@@ -147,7 +147,7 @@ public class FactoryUI {
 		switchText.setText("on");
 		parent.getChildren().add(loading);
 		parent.getChildren().add(switcherOn);
-		totalText.setStyle("-fx-text-fill: black");
+		totalText.setStyle("-fx-text-fill: #8fd4e1");
 	}
 	public void disable() {
 		switchText.setText("off");
@@ -156,19 +156,23 @@ public class FactoryUI {
 		totalText.setStyle("-fx-text-fill: gainsboro");
 	}
 	
-	// wait - Details
-	public void waitOn() {
-		parent.getChildren().add(wait);
-	}
-	public void waitOff() {
-		parent.getChildren().remove(wait);
-	}
-	
 	// wait - Task
 	public void workOn() {
 		parent.getChildren().add(running);
+		totalText.setStyle("-fx-text-fill: #4eb35c");
 	}
 	public void workOff() {
 		parent.getChildren().remove(running);
+		totalText.setStyle("-fx-text-fill: #8fd4e1");
+	}
+	
+	// wait - Details
+	public void waitOn() {
+		parent.getChildren().add(wait);
+		totalText.setStyle("-fx-text-fill: #e7d06b");
+	}
+	public void waitOff() {
+		parent.getChildren().remove(wait);
+		totalText.setStyle("-fx-text-fill: #4eb35c");
 	}
 }

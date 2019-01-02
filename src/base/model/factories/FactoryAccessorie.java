@@ -19,6 +19,6 @@ public class FactoryAccessorie extends Factory {
 	
 	@Override
 	protected void createDetail() {
-		detai = new Accessories(total);
+		detail = new Accessories(total);
 	}
 }

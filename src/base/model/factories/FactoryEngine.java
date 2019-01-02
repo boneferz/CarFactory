@@ -19,6 +19,6 @@ public class FactoryEngine extends Factory {
 	
 	@Override
 	protected void createDetail() {
-		detai = new Engine(total);
+		detail = new Engine(total);
 	}
 }

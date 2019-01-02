@@ -19,6 +19,6 @@ public class FactoryBody extends Factory {
 	
 	@Override
 	protected void createDetail() {
-		detai = new Body(total);
+		detail = new Body(total);
 	}
 }
