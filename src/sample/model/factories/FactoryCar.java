@@ -22,8 +22,8 @@ public class FactoryCar extends Factory {
 	Warehouse warehouseB;
 	Warehouse warehouseA;
 	
-	private boolean work = false;
-	private boolean wait = false;
+	private boolean working = false;
+	private boolean waiting = false;
 	
 	private int needCars = 0;
 	private int needCarsTemp = 0;
@@ -52,13 +52,15 @@ public class FactoryCar extends Factory {
 		// del
 	}
 	
-	public void warehouseDetailsListener(EventObject e) { // wait()
+	public void warehouseDetailsListener(EventObject e) { // waiting()
 		switch ((Event_Warehouse) e.getType()) {
 			case ADDED:
-				if (enable && isWork() && isDetails()) {
-					if (isWait()) {
-						setWait(false);
+				if (enable && isWorking() && isDetails()) {
+					if (isWaiting()) {
+						timeline.play();
+						setWaiting(false);
 						waitOff();
+						workOn();
 					}
 				}
 				break;
@@ -70,34 +72,29 @@ public class FactoryCar extends Factory {
 		enable = true;
 		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.ENABLE);
 		
-		if (isWork())
-			workOn();
-		
-		if (isWait())
-			waitOn();
-		
-		if (isWork()) {
-			if (!isDetails()) {
-				if (!isWait()) {
-					setWait(true);
-					waitOn();
+		if (isWorking()) {
+			if (isDetails()) {
+				timeline.play();
+				workOn();
+				
+				if (isWaiting()) {
+					setWaiting(false);
 				}
 			} else {
-				if (isWait()) {
-					setWait(false);
-					waitOff();
-				}
+				setWaiting(true);
+				waitOn();
 			}
 		}
 	}
 	
 	@Override
 	void off() {
-		if (isWork())
+		if (isWorking()) {
+			timeline.stop();
 			workOff();
-		
-		if (isWait())
-			ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.WAIT_OFF);
+			
+			if (isWaiting()) waitOff();
+		}
 		
 		enable = false;
 		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.DISABLE);
@@ -106,30 +103,25 @@ public class FactoryCar extends Factory {
 	@Override
 	public void creating() {
 		if (isDetails()) {
-			// adding detail
+			// adding of detail
 			createDetail();
 			super.warehousePut();
 			totalAddNew();
 			if (problem) toFixProblem();
 
-			// task work
+			// task working
 			--needCars;
 			if (needCars == 0) {
 				taskDone();
-			} else {
-				if (!isDetails()) {
-					if (!isWait()) {
-						setWait(true);
-						waitOn();
-					}
-				}
+				return;
 			}
-		} else {
-			
-			if (!isWait()) {
-				setWait(true);
-				waitOn();
-			}
+		}
+		
+		if (needCars > 0 && !isDetails()) {
+			timeline.stop();
+			setWaiting(true);
+			workOff();
+			waitOn();
 		}
 	}
 	
@@ -156,48 +148,48 @@ public class FactoryCar extends Factory {
 		needCars = count;
 		needCarsTemp = count;
 		
-		setWork(true);
+		setWorking(true);
+		
 		if (enable) {
-			if (!isWait()) {
+			if (isDetails()) {
+				timeline.play();
 				workOn();
-				
-				if (!isDetails()) {
-					setWait(true);
-					waitOn();
-				}
+			} else {
+				setWaiting(true);
+				waitOn();
 			}
 		}
 	}
 	void taskDone() {
-		setWork(false);
+		timeline.stop();
+		setWorking(false);
 		workOff();
+		
+		if (isWaiting()) {
+			setWaiting(false);
+			waitOff();
+		}
 		
 		dispatchEvent(this, Event.FACTORY_CAR, Event_FactoryCar.TASK_DONE);
 	}
 	
-	// work
 	void workOn() {
-		timeline.play();
 		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.WORK_ON);
 	}
 	void workOff() {
-		timeline.stop();
 		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.WORK_OFF);
 	}
 	
-	// wait
 	void waitOn() {
-		timeline.stop();
 		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.WAIT_ON);
 	}
 	void waitOff() {
-		timeline.play();
 		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.WAIT_OFF);
 	}
 	
 	@Override
 	public void pullDetail() {
-		if (isWork() && needCars < needCarsTemp) {
+		if (isWorking() && needCars < needCarsTemp) {
 			super.pullDetail();
 			needCars++;
 		}
@@ -205,7 +197,7 @@ public class FactoryCar extends Factory {
 	
 	@Override
 	public void clearWarehouse() {
-		if (isWork()) {
+		if (isWorking()) {
 			super.clearWarehouse();
 			needCars = needCarsTemp;
 		}
@@ -215,17 +207,17 @@ public class FactoryCar extends Factory {
 	// get / set
 	///////////////////////////////////////////////////////////////////////////
 	
-	public boolean isWork() {
-		return work;
+	public boolean isWorking() {
+		return working;
 	}
-	public void setWork(boolean work) {
-		this.work = work;
+	public void setWorking(boolean working) {
+		this.working = working;
 	}
 	
-	public boolean isWait() {
-		return wait;
+	public boolean isWaiting() {
+		return waiting;
 	}
-	public void setWait(boolean wait) {
-		this.wait = wait;
+	public void setWaiting(boolean waiting) {
+		this.waiting = waiting;
 	}
 }
