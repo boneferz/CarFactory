@@ -22,12 +22,8 @@ public class FactoryCar extends Factory {
 	Warehouse warehouseB;
 	Warehouse warehouseA;
 	
-	// states
 	private boolean work = false;
 	private boolean wait = false;
-	// vars
-	private boolean canAdd = false; // pause()
-	private boolean details = false; // wait()
 	
 	private int needCars = 0;
 	private int needCarsTemp = 0;
@@ -52,29 +48,13 @@ public class FactoryCar extends Factory {
 	}
 	
 	@Override
-	public void warehouseListener(EventObject e) { // pause()
-		switch ((Event_Warehouse) e.getType()) {
-			case RELEASED:
-				/*if (isDetailsAvailability() && isCanAddNextDetail()) {
-					if (paused) {
-						if (enable) {
-							resume();
-						}
-						else if (!enable){
-							paused = false;
-						}
-					}
-				}*/
-				break;
-		}
+	public void warehouseListener(EventObject e) {
+		// del
 	}
 	
 	public void warehouseDetailsListener(EventObject e) { // wait()
 		switch ((Event_Warehouse) e.getType()) {
 			case ADDED:
-				/*if (isCanAddNextDetail()) {
-					if (paused) resume(); // pause???
-				}*/
 				if (enable && isWork() && isDetails()) {
 					if (isWait()) {
 						setWait(false);
@@ -109,12 +89,6 @@ public class FactoryCar extends Factory {
 				}
 			}
 		}
-		
-//		if (paused) {
-//			ModelFacade.fireEvent(this, Event.FACTORIES, Event_Factory.PAUSE);
-//		} else {
-//			timeline.play();
-//
 	}
 	
 	@Override
@@ -127,10 +101,6 @@ public class FactoryCar extends Factory {
 		
 		enable = false;
 		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.DISABLE);
-//		if (!problem) {
-//			timeline.stop();
-//			if (paused) ModelFacade.fireEvent(this, Event.FACTORIES, Event_Factory.RESUME);
-//		}
 	}
 	
 	@Override
@@ -161,26 +131,6 @@ public class FactoryCar extends Factory {
 				waitOn();
 			}
 		}
-		
-		// if isCanAdd
-		// if isDetails
-		/*if (isDetailsAvailability() && isCanAddNextDetail()) {
-			// add detail
-			createDetail();
-			super.warehousePut();
-			totalAddNew();
-			if (problem) toFixProblem();
-
-			// task work
-			--needCars;
-			if (needCars == 0) {
-				taskDone();
-			} else {
-				if (!isCanAddNextDetail()) pause();
-			}
-		} else {
-			pause();
-		}*/
 	}
 	
 	@Override
@@ -200,22 +150,6 @@ public class FactoryCar extends Factory {
 		
 		return false;
 	}
-	
-	// canAdd
-	/*boolean isCanAddNextDetail() { // get + check + set
-		if (warehouse.getOccupancy() + 1 <= warehouse.getSize()) {
-			if (!canAdd)
-				setCanAddNextDetail(true);
-		} else {
-			if (canAdd)
-				setCanAddNextDetail(false);
-		}
-		
-		return canAdd;
-	}
-	public void setCanAddNextDetail(boolean canAdd) { // set + event
-		this.canAdd = canAdd;
-	}*/
 	
 	// task
 	public void taskOnCreation(int count) {
@@ -293,12 +227,5 @@ public class FactoryCar extends Factory {
 	}
 	public void setWait(boolean wait) {
 		this.wait = wait;
-	}
-	
-	public boolean isCanAdd() {
-		return canAdd;
-	}
-	public void setCanAdd(boolean canAdd) {
-		this.canAdd = canAdd;
 	}
 }
