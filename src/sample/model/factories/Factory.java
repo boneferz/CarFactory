@@ -62,7 +62,7 @@ public abstract class Factory extends EventDispatcher {
 		problem = false;
 		paused = false;
 		total = 0;
-		problemChance = 0; //Config.getInstance().problemChance;
+		problemChance = 1; //Config.getInstance().problemChance;
 		problemDelay = 3000; //Config.getInstance().problemDelay;
 		
 		speedMin = Config.getInstance().factorysSpeedMin;

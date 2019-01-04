@@ -12,19 +12,16 @@ public class DealerUI {
 	Image iconPauseImg = new Image("sample/_res/dealWain.png");
 	ImageView iconPause = new ImageView(iconPauseImg);
 	ImageView iconWork;
-	Label totalAll;
 	Label total;
 	Label count;
 	//	ImageView speedSlider;
 	
-	public DealerUI(Pane root, ImageView iconWork, Label totalAll, Label total, Label count) {
+	public DealerUI(Pane root, ImageView iconWork, Label total, Label count) {
 		this.parent = root;
 		this.iconWork = iconWork;
-		this.totalAll = totalAll;
 		this.total = total;
 		this.count = count;
 		
-		totalAll.setText("0");
 		total.setText("0");
 		count.setText("0" + "/5");
 		count.setStyle("-fx-text-fill: orange");
@@ -45,7 +42,6 @@ public class DealerUI {
 	public void updateTotal(Object sourse) {
 		Dealers dealer = (Dealers) sourse;
 		
-		totalAll.setText(String.valueOf(dealer.getTotal()));
 		total.setText(String.valueOf(dealer.getTotal()));
 		count.setText(String.valueOf(dealer.getOccupancy()) + "/" + String.valueOf(dealer.getSize()));
 		

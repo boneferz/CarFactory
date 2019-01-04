@@ -247,7 +247,7 @@ public class View {
 		}
 		
 		officeUI = new OfficeUI();
-		dealerUI = new DealerUI(rootPane, dealerIcon_1, total_5, wTotal_1, wCount_1);
+		dealerUI = new DealerUI(rootPane, dealerIcon_1, wTotal_1, wCount_1);
 	}
 	
 	public void setModel(ModelFacade model) {
@@ -256,8 +256,8 @@ public class View {
 		model.addEventListener(Event.FACTORIES, this::factoriesListener);
 		model.addEventListener(Event.WAREHOUSE, this::warehouseListener);
 		
-//		model.addEventListener(Event.DEALER, this::dealerListener);
-//		model.addEventListener(Event.OFFICE, this::officeListener);
+		model.addEventListener(Event.DEALER, this::dealerListener);
+		model.addEventListener(Event.OFFICE, this::officeListener);
 		model.addEventListener(Event.FACTORY_CAR, this::factoryCarListener);
 	}
 	
@@ -288,7 +288,7 @@ public class View {
 		}
 	}
 	
-	/*private void officeListener(EventObject e) {
+	private void officeListener(EventObject e) {
 		switch ((Event_Office) e.getType()) {
 			case ANSWER_DONE:
 				
@@ -298,9 +298,9 @@ public class View {
 				
 				break;
 		}
-	}*/
+	}
 	
-	/*private void dealerListener(EventObject e) {
+	private void dealerListener(EventObject e) {
 		switch ((Event_Dealer) e.getType()) {
 			case UPDATE:
 				dealerUI.updateTotal(e.getSource());
@@ -314,7 +314,7 @@ public class View {
 				dealerUI.resume();
 				break;
 		}
-	}*/
+	}
 	
 	void warehouseListener(EventObject event) {
 		int index = ((Warehouse) event.getSource()).getIndex();

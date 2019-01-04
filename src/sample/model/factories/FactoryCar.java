@@ -89,15 +89,17 @@ public class FactoryCar extends Factory {
 	
 	@Override
 	void off() {
-		if (isWorking()) {
-			timeline.stop();
-			workOff();
+		if (!problem) {
+			if (isWorking()) {
+				timeline.stop();
+				workOff();
+				
+				if (isWaiting()) waitOff();
+			}
 			
-			if (isWaiting()) waitOff();
+			enable = false;
+			ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.DISABLE);
 		}
-		
-		enable = false;
-		ModelFacade.fireEvent(this, Event.FACTORY_CAR, Event_FactoryCar.DISABLE);
 	}
 	
 	@Override

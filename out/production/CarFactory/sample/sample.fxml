@@ -82,14 +82,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="SpeedSlider_5" layoutX="530.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@_res/runner.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
             <ImageView fx:id="switch_4" layoutX="308.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/off.png" />
@@ -171,11 +163,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label fx:id="total_5" layoutX="528.0" layoutY="506.0" text="126005">
-               <font>
-                  <Font name="Aldo the Apache" size="15.0" />
-               </font>
-            </Label>
             <ImageView fx:id="off_2" layoutX="65.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@_res/disable.png" />
